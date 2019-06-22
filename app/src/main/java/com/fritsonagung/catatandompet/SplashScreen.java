@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
 
+    //Cretae variable
     private static int SPLASH_TIME_OUT = 3000;
     private ImageView logo;
     private TextView title;
