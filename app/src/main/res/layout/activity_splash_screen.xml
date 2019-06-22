@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SplashScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightBlue"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".SplashScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/logoSplashScreen"
+            android:layout_width="@dimen/dimen100"
+            android:layout_height="@dimen/dimen100"
+            android:layout_marginBottom="@dimen/dimen12"
+            android:tint="@color/colorWhite"
+            app:srcCompat="@drawable/logo_apps"
+            tools:ignore="ContentDescription,MissingConstraints" />
+
+        <TextView
+            android:id="@+id/titleSplashScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logoSplashScreen"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/catatan_dompet"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font20"
+            android:textStyle="bold"
+            tools:ignore="ObsoleteLayoutParam" />
+
+    </LinearLayout>
+</RelativeLayout>
