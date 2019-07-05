@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/logoSplashScreen"
-            android:layout_width="@dimen/dimen100"
-            android:layout_height="@dimen/dimen100"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen80"
             android:layout_marginBottom="@dimen/dimen12"
             android:tint="@color/colorWhite"
             app:srcCompat="@drawable/logo_apps"
@@ -31,12 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logoSplashScreen"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/proxima_nova_extrabold"
             android:text="@string/catatan_dompet"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/font20"
-            android:textStyle="bold"
             tools:ignore="ObsoleteLayoutParam" />
 
     </LinearLayout>

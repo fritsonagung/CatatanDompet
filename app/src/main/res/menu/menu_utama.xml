@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_cari"
+        android:title="@string/cari"
+        appcompat:actionViewClass="android.support.v7.widget.SearchView"
+        appcompat:showAsAction="always"/>
+    <item
+        android:id="@+id/action_tambah"
+        android:icon="@drawable/ic_add"
+        android:title="@string/tambah"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/kategori"
+        android:title="@string/kategori"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/laporan"
+        android:title="@string/laporan"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/tentang"
+        android:title="@string/tentang"
+        app:showAsAction="never"/>
+</menu>

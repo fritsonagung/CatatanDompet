@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGrey"
+    tools:context=".Transaksi">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/CV_Transaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen8"
+            app:cardBackgroundColor="@color/colorWhite"
+            android:foregroundGravity="fill|center_horizontal">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen10">
+
+                    <TextView
+                        android:id="@+id/TV_Jenis_Transaksi"
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:text="@string/jenis"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font18" />
+
+                    <EditText
+                        android:id="@+id/ET_Jenis_Transaksi"
+                        android:layout_width="@dimen/dimen200"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginStart="@dimen/dimen20"
+                        android:padding="@dimen/dimen6"
+                        android:background="@drawable/square_edit_text"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:textColor="@color/colorBlack"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen10">
+
+                    <TextView
+                        android:id="@+id/TV_Tanggal"
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:text="@string/tanggal"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font18" />
+
+                    <EditText
+                        android:id="@+id/ET_Tanggal"
+                        android:layout_width="@dimen/dimen200"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginStart="@dimen/dimen20"
+                        android:padding="@dimen/dimen6"
+                        android:background="@drawable/square_edit_text"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:textColor="@color/colorBlack"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen10">
+
+                    <TextView
+                        android:id="@+id/TV_Kategori"
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:text="@string/kategori"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font18" />
+
+                    <EditText
+                        android:id="@+id/ET_Kategori"
+                        android:layout_width="@dimen/dimen200"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginStart="@dimen/dimen20"
+                        android:padding="@dimen/dimen6"
+                        android:background="@drawable/square_edit_text"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:textColor="@color/colorBlack"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen10">
+
+                    <TextView
+                        android:id="@+id/TV_Jumlah"
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:text="@string/jumlah"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font18" />
+
+                    <EditText
+                        android:id="@+id/ET_Jumlah"
+                        android:layout_width="@dimen/dimen200"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginStart="@dimen/dimen20"
+                        android:padding="@dimen/dimen6"
+                        android:background="@drawable/square_edit_text"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:textColor="@color/colorBlack"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dimen10">
+
+                    <TextView
+                        android:id="@+id/TV_Keterangan"
+                        android:layout_width="@dimen/dimen100"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:text="@string/keterangan"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font18" />
+
+                    <EditText
+                        android:id="@+id/ET_Keterangan"
+                        android:layout_width="@dimen/dimen200"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginStart="@dimen/dimen20"
+                        android:padding="@dimen/dimen6"
+                        android:background="@drawable/square_edit_text"
+                        android:fontFamily="@font/proxima_nova_regular"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CV_Transaksi"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dimen15"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/BT_Simpan_Transaksi"
+                android:layout_width="@dimen/dimen120"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen10"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:text="@string/simpan"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/font18" />
+
+            <Button
+                android:id="@+id/BT_Batal_Transaksi"
+                android:layout_width="@dimen/dimen120"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen0"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:text="@string/batal"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/font18" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
