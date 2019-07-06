@@ -25,5 +25,10 @@
     <string name="keterangan">Keterangan</string>
     <string name="simpan">Simpan</string>
     <string name="batal">Batal</string>
-    <string name="jenis">Jenis</string>
+    <string name="tipe">Tipe</string>
+    <string name="nama_kategori">Nama Kategori</string>
+    <string name="jenis_kategori">Jenis Kategori</string>
+    <string name="ok">OK</string>
+    <string name="versi_app">Versi : 1.0.0</string>
+    <string name="tentang_pengantar">Anda Menggunakan Aplikasi</string>
 </resources>
