@@ -6,37 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLightBlue"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".SplashScreen">
+
+    <ImageView
+        android:id="@+id/logoSplashScreen"
+        android:layout_width="@dimen/dimen138"
+        android:layout_height="@dimen/dimen138"
+        android:layout_centerInParent="true"
+        android:tint="@color/colorWhite"
+        app:srcCompat="@drawable/logo_apps"
+        android:layout_marginBottom="@dimen/dimen60"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logoSplashScreen"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:id="@+id/logoSplashScreen"
-            android:layout_width="@dimen/dimen80"
-            android:layout_height="@dimen/dimen80"
-            android:layout_marginBottom="@dimen/dimen12"
-            android:tint="@color/colorWhite"
-            app:srcCompat="@drawable/logo_apps"
-            tools:ignore="ContentDescription,MissingConstraints" />
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/titleSplashScreen"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/logoSplashScreen"
             android:fontFamily="@font/proxima_nova_extrabold"
+            android:textStyle="italic"
+            android:gravity="center_horizontal"
             android:text="@string/catatan_dompet"
-            android:textAlignment="center"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/font20"
-            tools:ignore="ObsoleteLayoutParam" />
+            android:textSize="@dimen/font32" />
+
+        <TextView
+            android:id="@+id/subtitleSplashScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_nova_alt_light"
+            android:gravity="center_horizontal"
+            android:text="@string/sub_title_splash"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font18" />
 
     </LinearLayout>
+
+
 </RelativeLayout>

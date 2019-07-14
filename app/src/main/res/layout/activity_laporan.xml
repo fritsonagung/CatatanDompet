@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGrey"
+    tools:context=".LaporanActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:id="@+id/layout_Pilih_Bulan"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen64"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/IBT_Prev"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen30"
+                android:background="@color/white"
+                android:layout_marginStart="@dimen/dimen30"
+                android:src="@drawable/ic_left_pointer" />
+
+            <TextView
+                android:id="@+id/TV_Nama_Bulan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dimen5"
+                android:layout_weight="1"
+                android:fontFamily="@font/proxima_nova_bold"
+                android:gravity="center"
+                android:padding="@dimen/dimen10"
+                android:text="Juli 2019"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font18" />
+
+            <ImageButton
+                android:id="@+id/IBT_Next"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen30"
+                android:layout_marginEnd="@dimen/dimen30"
+                android:background="@color/white"
+                android:src="@drawable/ic_right_pointer" />
+
+
+        </LinearLayout>
+
+        <lecho.lib.hellocharts.view.PieChartView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen264"
+            android:layout_below="@+id/layout_Pilih_Bulan"
+            android:layout_marginTop="@dimen/dimen2"
+            android:background="@color/colorWhite" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/chart">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layout_Total_Perbulan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen5"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen10"
+                        android:fontFamily="@font/proxima_nova_bold"
+                        android:text="Total"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font20" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Pemasukan"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/font18" />
+
+                        <TextView
+                            android:id="@+id/Total_Pemasukan_Perbulan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="0,00"
+                            android:textColor="@color/colorEmerald"
+                            android:textSize="@dimen/font18" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Pengeluaran"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/font18" />
+
+                        <TextView
+                            android:id="@+id/Total_Pengeluaran_Perbulan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="0,00"
+                            android:textColor="@color/colorOrange"
+                            android:textSize="@dimen/font18" />
+
+                    </LinearLayout>
+
+
+                    <View style="@style/Divider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Selisih"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/font18" />
+
+                        <TextView
+                            android:id="@+id/TV_Total_Saldo_Perbulan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="0,00"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/font18" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Top_Kategori_Pemasukan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_Total_Perbulan"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen10"
+                        android:fontFamily="@font/proxima_nova_bold"
+                        android:text="Top Kategori Pemasukan"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font20" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/TV_Top_Kategori_Pemasukan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Nama Kategori"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/font18" />
+
+                        <TextView
+                            android:id="@+id/Total_Top_Kategori_Pemasukan_Perbulan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="0,00"
+                            android:textColor="@color/colorEmerald"
+                            android:textSize="@dimen/font18" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_Top_Kategori_Pengeluaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_Top_Kategori_Pemasukan"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen10"
+                        android:fontFamily="@font/proxima_nova_bold"
+                        android:text="Top Kategori Pengeluaran"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font20" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/TV_Top_Kategori_Pengeluaran"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="Nama Kategori"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/font18" />
+
+                        <TextView
+                            android:id="@+id/Total_Top_Kategori_Pengeluaran_Perbulan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/dimen10"
+                            android:fontFamily="@font/proxima_nova_regular"
+                            android:text="0,00"
+                            android:textColor="@color/colorOrange"
+                            android:textSize="@dimen/font18" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

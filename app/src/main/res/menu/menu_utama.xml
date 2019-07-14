@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:appcompat="http://schemas.android.com/apk/res-auto">
 
@@ -8,22 +7,29 @@
         android:id="@+id/action_cari"
         android:title="@string/cari"
         appcompat:actionViewClass="android.support.v7.widget.SearchView"
-        appcompat:showAsAction="always"/>
+        appcompat:showAsAction="always" />
+
     <item
         android:id="@+id/action_tambah"
         android:icon="@drawable/ic_add"
         android:title="@string/tambah"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/kategori"
+        android:icon="@drawable/ic_categoty_list"
         android:title="@string/kategori"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/laporan"
+        android:icon="@drawable/ic_report"
         android:title="@string/laporan"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/tentang"
+        android:icon="@drawable/ic_about"
         android:title="@string/tentang"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 </menu>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen60"
+        android:background="@color/colorLightBlue"
+        android:fontFamily="@font/proxima_nova_bold"
+        android:gravity="center"
+        android:text="@string/hapus"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font20" />
+
+    <TextView
+        android:id="@+id/TV_Konfirmasi_Hapus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dimen30"
+        android:layout_marginTop="@dimen/dimen10"
+        android:layout_marginEnd="@dimen/dimen30"
+        android:fontFamily="@font/proxima_nova_regular"
+        android:text="Apakah anda yakin ingin menghapus?"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/font16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/BT_Konfirmasi_Ya_Hapus"
+            android:layout_width="@dimen/dimen100"
+            android:layout_height="@dimen/dimen40"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen25"
+            android:layout_marginTop="@dimen/dimen20"
+            android:layout_marginBottom="@dimen/dimen20"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/proxima_nova_regular"
+            android:text="@string/ya"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font16" />
+
+        <Button
+            android:id="@+id/BT_Konfirmasi_Tidak_Hapus"
+            android:layout_width="@dimen/dimen100"
+            android:layout_height="@dimen/dimen40"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen25"
+            android:layout_marginTop="@dimen/dimen20"
+            android:layout_marginBottom="@dimen/dimen20"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/proxima_nova_regular"
+            android:text="@string/tidak"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font16" />
+
+    </LinearLayout>
+
+</LinearLayout>

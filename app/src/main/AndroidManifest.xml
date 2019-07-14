@@ -11,22 +11,30 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".IntroActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LaporanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".TambahKategori"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity
-            android:name=".Kategori"
+            android:name=".KategoriActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Transaksi"
+            android:name=".TambahTransaksiActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreen"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

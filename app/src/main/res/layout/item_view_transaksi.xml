@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen5"
+    android:layout_marginBottom="5dp"
+    android:background="@color/colorLightGrey"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/layout_pemasukan_pengeluaran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen10">
+
+            <TextView
+                android:id="@+id/TV_Kategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_weight="1"
+                android:fontFamily="@font/proxima_nova_regular"
+                android:text="Kategori"
+                android:gravity="left"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font16" />
+
+
+            <TextView
+                android:id="@+id/TV_Keterangan_Transaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_weight="1"
+                android:fontFamily="@font/proxima_nova_regular"
+                android:gravity="center"
+                android:text="Keterangan"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font16" />
+
+            <TextView
+                android:id="@+id/TV_Jumlah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_weight="1"
+                android:fontFamily="@font/proxima_nova_regular"
+                android:gravity="right"
+                android:text="0,00"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font16" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -31,4 +31,9 @@
     <string name="ok">OK</string>
     <string name="versi_app">Versi : 1.0.0</string>
     <string name="tentang_pengantar">Anda Menggunakan Aplikasi</string>
+    <string name="ya">Ya</string>
+    <string name="tidak">Tidak</string>
+    <string name="hapus">Hapus</string>
+    <string name="sub_title_splash">Catat Keuangan Harian Anda</string>
+
 </resources>

@@ -19,10 +19,20 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="MyOverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow" >
+    <style name="MyOverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="overlapAnchor">false</item>
         <item name="android:dropDownVerticalOffset">-4.0dip</item>
     </style>
 
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen1</item>
+        <item name="android:background">@color/colorLightGrey</item>
+    </style>
 
+    <!-- Theme.AppCompat.Light is not a dialog theme -->
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorLightBlue</item>
+    </style>
 </resources>
+

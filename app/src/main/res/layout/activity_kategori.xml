@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLightGrey"
-    tools:context=".Kategori">
+    tools:context=".KategoriActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -32,6 +32,7 @@
             android:id="@+id/list_kategori"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
