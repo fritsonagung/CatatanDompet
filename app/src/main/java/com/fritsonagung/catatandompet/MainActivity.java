@@ -3,7 +3,9 @@ package com.fritsonagung.catatandompet;
 import android.app.SearchManager;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fritsonagung.catatandompet.Adapter.AdapterTransaksi;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
@@ -55,11 +58,6 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Utama");
-
-        // Set Current Date
-        String date_n = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());
-        TextView date = (TextView) findViewById(R.id.TV_Tanggal);
-        date.setText(date_n);
 
         fetchDataFromRoom();
         initRecyclerView();
@@ -126,42 +124,51 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     }
 
 
-    public void showDialogTentang() {
-        dialog = new AppCompatDialog(this);
-        dialog.setContentView(R.layout.dialog_tentang);
+    public void showDialogTentang()
 
-        buttonTentang = dialog.findViewById(R.id.BT_OK_Tentang);
-        buttonTentang.setOnClickListener(new View.OnClickListener() {
+    {
+        AlertDialog.Builder mbuilder = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
+        View view = getLayoutInflater().inflate(R.layout.dialog_tentang, null);
+
+        mbuilder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
             }
         });
 
-        if (!dialog.isShowing()) {
-            dialog.show();
-        }
+        mbuilder.setView(view);
+        AlertDialog dialog = mbuilder.create();
+        dialog.show();
+
     }
+
     private void fetchDataFromRoom() {
         db = Room.databaseBuilder(getApplicationContext(),
-                DatabaseAplikasi.class,"transaksi").fallbackToDestructiveMigration().allowMainThreadQueries().build();
-        listTransaksi = (List<EntitasTransaksi>) db.transaksiDao().tampilSemuaTransaksi();
+                DatabaseAplikasi.class, "transaksi")
+                .fallbackToDestructiveMigration().allowMainThreadQueries().build();
+        listTransaksi = db.transaksiDao().tampilSemuaTransaksi();
+
 
         //just checking data from db
-        for (int i = 0 ;i <listTransaksi.size();i++){
-            Log.e("Aplikasi",listTransaksi.get(i).getKategori()+i);
-            Log.e("Aplikasi",listTransaksi.get(i).getKeterangan()+i);
-            Log.e("Aplikasi", String.valueOf(listTransaksi.get(i).getJumlah()+i));
+        for (int i = 0; i < listTransaksi.size(); i++) {
+            Log.e("Aplikasi", listTransaksi.get(i).getTipe() + i);
+            Log.e("Aplikasi", listTransaksi.get(i).getTanggal() + i);
+            Log.e("Aplikasi", listTransaksi.get(i).getKategori() + i);
+            Log.e("Aplikasi", String.valueOf(listTransaksi.get(i).getJumlah() + i));
+            Log.e("Aplikasi", listTransaksi.get(i).getKeterangan() + i);
         }
     }
+
     private void initRecyclerView() {
-        recyclerView = (RecyclerView)findViewById(R.id.list_transaksi);
+        recyclerView = findViewById(R.id.list_transaksi);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        adapterTransaksi = new AdapterTransaksi(this,listTransaksi, this);
+        adapterTransaksi = new AdapterTransaksi(this, listTransaksi, this);
     }
+
     private void setAdapter() {
         recyclerView.setAdapter(adapterTransaksi);
     }
@@ -169,8 +176,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     @Override
     public void onClickTransaksi(int position) {
         listTransaksi.get(position);
-        Intent intent = new Intent(this, TambahTransaksiActivity.class);
+        Intent intent = new Intent(this, UbahTransaksiActivity.class);
         startActivity(intent);
-
     }
 }

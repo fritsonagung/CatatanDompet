@@ -185,26 +185,26 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/BT_Batal_Transaksi"
+                android:id="@+id/BT_Hapus_Transaksi"
                 android:layout_width="@dimen/dimen100"
                 android:layout_height="@dimen/dimen40"
                 android:layout_margin="@dimen/dimen25"
                 android:layout_weight="1"
                 android:background="@drawable/custom_button"
                 android:fontFamily="@font/proxima_nova_regular"
-                android:text="@string/batal"
+                android:text="@string/hapus"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/font18" />
 
             <Button
-                android:id="@+id/BT_Simpan_Transaksi"
+                android:id="@+id/BT_Ubah_Transaksi"
                 android:layout_width="@dimen/dimen100"
                 android:layout_height="@dimen/dimen40"
                 android:layout_margin="@dimen/dimen25"
                 android:layout_weight="1"
                 android:background="@drawable/custom_button"
                 android:fontFamily="@font/proxima_nova_regular"
-                android:text="@string/simpan"
+                android:text="@string/ubah"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/font18" />
         </LinearLayout>

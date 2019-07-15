@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:orientation="vertical">
 
@@ -37,19 +37,6 @@
         android:fontFamily="@font/proxima_nova_regular"
         android:text="@string/versi_app"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/font16" />
-
-    <Button
-        android:id="@+id/BT_OK_Tentang"
-        android:layout_width="@dimen/dimen100"
-        android:layout_height="@dimen/dimen40"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dimen20"
-        android:layout_marginBottom="@dimen/dimen20"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/proxima_nova_regular"
-        android:text="@string/ok"
-        android:textColor="@color/colorWhite"
         android:textSize="@dimen/font16" />
 
 </LinearLayout>

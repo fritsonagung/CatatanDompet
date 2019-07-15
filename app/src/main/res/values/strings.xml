@@ -35,5 +35,10 @@
     <string name="tidak">Tidak</string>
     <string name="hapus">Hapus</string>
     <string name="sub_title_splash">Catat Keuangan Harian Anda</string>
+    <string name="ubah">UBAH</string>
 
+    <string-array name="jenis_transaksi_dan_kategori">
+        <item>Pemasukan</item>
+        <item>Pengeluaran</item>
+    </string-array>
 </resources>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".KategoriActivity">
 
 
@@ -62,37 +63,6 @@
             android:fontFamily="@font/proxima_nova_regular"
             android:popupBackground="@color/white" />
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen15"
-        android:orientation="horizontal"
-        android:layout_gravity="end">
-
-        <Button
-            android:id="@+id/BT_Simpan_Kategori"
-            android:layout_width="@dimen/dimen80"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorWhite"
-            android:fontFamily="@font/proxima_nova_regular"
-            android:text="@string/simpan"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/font16" />
-
-        <Button
-            android:id="@+id/BT_Batal_Kategori"
-            android:layout_width="@dimen/dimen80"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorWhite"
-            android:fontFamily="@font/proxima_nova_regular"
-            android:text="@string/batal"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/font16" />
     </LinearLayout>
 
 </LinearLayout>

@@ -134,73 +134,13 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_tanggal_total_transaksi_hari_ini"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/info_total_pemasukan_pengeluaran_saldo"
-            android:layout_marginStart="@dimen/dimen10"
-            android:layout_marginTop="@dimen/dimen10"
-            android:layout_marginEnd="@dimen/dimen10"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/dimen20">
-
-            <TextView
-                android:id="@+id/TV_Tanggal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/proxima_nova_bold"
-                android:gravity="center"
-                android:text="Tanggal"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/font16" />
-
-            <TextView
-                android:id="@+id/TV_Total_Pemasukan_Perhari"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/proxima_nova_regular"
-                android:gravity="center"
-                android:text="0,00"
-                android:textColor="@color/colorEmerald"
-                android:textSize="@dimen/font16" />
-
-            <TextView
-                android:id="@+id/TV_Total_Pengeluaran_Perhari"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/proxima_nova_regular"
-                android:gravity="center"
-                android:text="0,00"
-                android:textColor="@color/colorOrange"
-                android:textSize="@dimen/font16" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Layout_RV_Transaksi"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen324"
-            android:layout_below="@id/layout_tanggal_total_transaksi_hari_ini"
-            android:layout_marginStart="@dimen/dimen10"
-            android:layout_marginTop="@dimen/dimen1"
-            android:layout_marginEnd="@dimen/dimen10"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/dimen20">
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_transaksi"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:layout_marginTop="@dimen/dimen1" />
-
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_margin="@dimen/dimen10"
+                android:layout_below="@id/info_total_pemasukan_pengeluaran_saldo" />
 
     </RelativeLayout>
 

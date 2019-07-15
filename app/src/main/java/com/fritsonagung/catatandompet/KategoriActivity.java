@@ -1,6 +1,9 @@
 package com.fritsonagung.catatandompet;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
@@ -8,25 +11,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 /**
- Developed By:
- Nama : Fritson Agung Julians Ayomi
- NIM  : 10116076
- Kelas: AKB-2
- Tanggal Pengerjaan : 6 Juli 2019
+ * Developed By:
+ * Nama : Fritson Agung Julians Ayomi
+ * NIM  : 10116076
+ * Kelas: AKB-2
+ * Tanggal Pengerjaan : 6 Juli 2019
  **/
 
 public class KategoriActivity extends AppCompatActivity {
 
     private AppCompatDialog dialog;
+    private Button buttonBatal, buttonSimpan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kategori);
-
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -47,7 +52,6 @@ public class KategoriActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     @Override
@@ -64,12 +68,41 @@ public class KategoriActivity extends AppCompatActivity {
 
         if (id == R.id.action_tambah) {
 
-            Intent i = new Intent(getApplicationContext(), TambahKategori.class);
-            startActivity(i);
+            showDialogTambahKategori();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public void showDialogTambahKategori() {
+        AlertDialog.Builder mbuilder = new AlertDialog.Builder(KategoriActivity.this, R.style.DialogTheme2);
+        View view = getLayoutInflater().inflate(R.layout.dialog_tambah_kategori, null);
+        final Spinner spinner = view.findViewById(R.id.Spinner_Jenis_Kategori);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(KategoriActivity.this,
+                R.layout.spinner_item, getResources().
+                getStringArray(R.array.jenis_transaksi_dan_kategori));
+        adapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(adapter);
+
+        mbuilder.setPositiveButton("SIMPAN", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                spinner.getSelectedItem().toString();
+            }
+        });
+
+        mbuilder.setNegativeButton("BATAL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mbuilder.setView(view);
+        AlertDialog dialog = mbuilder.create();
+        dialog.show();
+
+    }
 }
