@@ -135,7 +135,7 @@
                         android:textSize="@dimen/font18" />
 
                     <EditText
-                        android:id="@+id/ET_Jumlah"
+                        android:id="@+id/ET_Ubah_Jumlah"
                         android:layout_width="@dimen/dimen180"
                         android:layout_height="@dimen/dimen40"
                         android:background="@drawable/square_edit_text"

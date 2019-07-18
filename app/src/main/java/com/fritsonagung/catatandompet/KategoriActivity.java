@@ -25,9 +25,6 @@ import android.widget.Spinner;
 
 public class KategoriActivity extends AppCompatActivity {
 
-    private AppCompatDialog dialog;
-    private Button buttonBatal, buttonSimpan;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +47,8 @@ public class KategoriActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
 
 
     }

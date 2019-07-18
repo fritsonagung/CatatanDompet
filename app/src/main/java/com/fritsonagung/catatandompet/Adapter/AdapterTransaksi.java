@@ -1,15 +1,16 @@
 package com.fritsonagung.catatandompet.Adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
@@ -18,6 +19,14 @@ import com.fritsonagung.catatandompet.R;
 import com.fritsonagung.catatandompet.UbahTransaksiActivity;
 
 import java.util.List;
+
+/**
+ * Developed By:
+ * Nama : Fritson Agung Julians Ayomi
+ * NIM  : 10116076
+ * Kelas: AKB-2
+ * Tanggal Pengerjaan : 5 Juli 2019
+ **/
 
 public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyViewHolder> {
 
@@ -33,6 +42,7 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
         this.mOnTransaksiListener = onTransaksiListener;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -42,14 +52,27 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final EntitasTransaksi transaksi = listTransaksi.get(position);
 
+        String jumlah;
+
+        if(listTransaksi.get(position).getTipe().equals("Pemasukan")) {
+            jumlah="+ Rp. "+listTransaksi.get(position).getJumlah();
+            holder.jumlah.setText(jumlah);
+            holder.jumlah.setTextColor(Color.parseColor("#33C4B3"));
+        }
+        else {
+            jumlah="- Rp. "+listTransaksi.get(position).getJumlah();
+            holder.jumlah.setText(jumlah);
+            holder.jumlah.setTextColor(Color.parseColor("#F68E4F"));
+        }
+
         holder.tanggal.setText(transaksi.getTanggal());
         holder.kategori.setText(transaksi.getKategori());
         holder.keterangan.setText(transaksi.getKeterangan());
-        holder.jumlah.setText("Rp." + transaksi.getJumlah());
     }
 
 
@@ -81,11 +104,11 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
         public void onClick(View v) {
             onTransaksiListener.onClickTransaksi(getAdapterPosition());
             Intent intent = new Intent(mContext, UbahTransaksiActivity.class);
-
+            intent.putExtra("id",listTransaksi.get(getAdapterPosition()).getId_transaksi());
             intent.putExtra("tipe", listTransaksi.get(getAdapterPosition()).getTipe());
             intent.putExtra("tanggal",listTransaksi.get(getAdapterPosition()).getTanggal());
             intent.putExtra("kategori",listTransaksi.get(getAdapterPosition()).getKategori());
-            intent.putExtra("jumlah", listTransaksi.get(getAdapterPosition()).getJumlah());
+            intent.putExtra("jumlah",listTransaksi.get(getAdapterPosition()).getJumlah());
             intent.putExtra("keterangan", listTransaksi.get(getAdapterPosition()).getKeterangan());
 
             mContext.startActivity(intent);

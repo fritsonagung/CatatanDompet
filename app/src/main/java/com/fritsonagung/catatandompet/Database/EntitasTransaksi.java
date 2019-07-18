@@ -19,6 +19,7 @@ import java.util.Date;
 public class EntitasTransaksi {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id_transaksi;
 
     @ColumnInfo(name = "tipe")
@@ -31,7 +32,7 @@ public class EntitasTransaksi {
     private String kategori;
 
     @ColumnInfo(name = "jumlah")
-    private Double jumlah;
+    private int jumlah;
 
     @ColumnInfo(name = "keterangan")
     private String keterangan;
@@ -68,11 +69,11 @@ public class EntitasTransaksi {
         this.kategori = kategori;
     }
 
-    public Double getJumlah() {
+    public int getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(Double jumlah) {
+    public void setJumlah(int jumlah) {
         this.jumlah = jumlah;
     }
 

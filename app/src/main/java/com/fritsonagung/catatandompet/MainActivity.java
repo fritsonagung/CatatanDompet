@@ -19,17 +19,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.fritsonagung.catatandompet.Adapter.AdapterTransaksi;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
+import com.fritsonagung.catatandompet.Database.ExecutorAplikasi;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 /**
  * Developed By:
@@ -48,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     private AdapterTransaksi adapterTransaksi;
     public static DatabaseAplikasi db;
     private RecyclerView recyclerView;
+    private TextView totalSaldoKeseluruhan, totalPemasukanKeseluruhan, totalPengeluaranKeseluruhan;
+    private int totalSaldo, totalPemasukan, totalPengeluaran;
+    long firstDate;
     List<EntitasTransaksi> listTransaksi = new ArrayList<>();
 
     @Override
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         fetchDataFromRoom();
         initRecyclerView();
         setAdapter();
+
+        totalPemasukanKeseluruhan = findViewById(R.id.TV_Total_Pemasukan_Keseluruhan);
+        totalPengeluaranKeseluruhan = findViewById(R.id.TV_Total_Pengeluaran_Keseluruhan);
+        totalSaldoKeseluruhan = findViewById(R.id.TV_Total_Saldo_Keseluruhan);
+
+        getTotalTransaksi();
 
     }
 
@@ -149,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
                 .fallbackToDestructiveMigration().allowMainThreadQueries().build();
         listTransaksi = db.transaksiDao().tampilSemuaTransaksi();
 
-
         //just checking data from db
         for (int i = 0; i < listTransaksi.size(); i++) {
             Log.e("Aplikasi", listTransaksi.get(i).getTipe() + i);
@@ -167,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
         adapterTransaksi = new AdapterTransaksi(this, listTransaksi, this);
+        adapterTransaksi.notifyDataSetChanged();
     }
 
     private void setAdapter() {
@@ -178,5 +186,30 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         listTransaksi.get(position);
         Intent intent = new Intent(this, UbahTransaksiActivity.class);
         startActivity(intent);
+    }
+
+    private void getTotalTransaksi(){
+
+        ExecutorAplikasi.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                int pemasukan = db.transaksiDao().hitungTotalTransaksi("Pemasukan");
+                totalPemasukan = pemasukan;
+                int pengeluaran = db.transaksiDao().hitungTotalTransaksi("Pengeluaran");
+                totalPengeluaran = pengeluaran;
+                int saldo = pemasukan - pengeluaran;
+                totalSaldo = saldo;
+            }
+        });
+        ExecutorAplikasi.getInstance().mainThread().execute(new Runnable() {
+            @Override
+            public void run() {
+                totalSaldoKeseluruhan.setText(String.valueOf(totalSaldo));
+                totalPemasukanKeseluruhan.setText(String.valueOf(totalPemasukan));
+                totalPengeluaranKeseluruhan.setText(String.valueOf(totalPengeluaran));
+            }
+        });
+
+
     }
 }

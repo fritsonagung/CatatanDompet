@@ -1,5 +1,6 @@
 package com.fritsonagung.catatandompet.Database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -20,22 +21,27 @@ import java.util.List;
 @Dao
 public interface TransaksiDao {
 
-    @Query("SELECT * FROM transaksi")
-    List<EntitasTransaksi>tampilSemuaTransaksi();
+    @Query("SELECT * FROM transaksi ORDER BY tanggal DESC")
+    List<EntitasTransaksi> tampilSemuaTransaksi();
 
-    @Query("SELECT SUM (jumlah) FROM transaksi as totalPemasukan WHERE tipe =:tipeTransaksi")
-    int hitungTotalPemasukan(String tipeTransaksi);
+    @Query("SELECT SUM (jumlah) FROM transaksi AS totalPemasukan WHERE tipe =:tipeTransaksi")
+    int hitungTotalTransaksi(String tipeTransaksi);
 
     @Query("SELECT * FROM transaksi WHERE tanggal = :curTanggal")
-    List<EntitasTransaksi>tampilTransaksiHariIni(String curTanggal);
+    List<EntitasTransaksi>tampilTransaksiBulanIni(String curTanggal);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT * FROM transaksi WHERE tipe LIKE :cari " +
+            "OR tanggal LIKE :cari OR kategori LIKE :cari OR jumlah LIKE :cari " +
+            "OR keterangan LIKE :cari ")
+    int tampilCariTransaksi(String cari);
+
+    @Insert
     void tambahTransaksi(EntitasTransaksi entitasTransaksi);
 
     @Delete
     void hapusTransaksi (EntitasTransaksi entitasTransaksi);
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
+    @Update
     void ubahTransaksi(EntitasTransaksi entitasTransaksi);
 
 }

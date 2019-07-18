@@ -126,13 +126,18 @@ public class TambahTransaksiActivity extends AppCompatActivity {
 
                 if (!jumlah.getText().toString().isEmpty() && !keterangan.getText().toString().isEmpty()) {
 
-                    entitasTransaksi = new EntitasTransaksi();
-                    entitasTransaksi.setTipe(spinnerTipeTransaksi.getItemAtPosition(spinnerTipeTransaksi.getSelectedItemPosition()).toString());
-                    entitasTransaksi.setKategori(spinnerKategori.getItemAtPosition(spinnerKategori.getSelectedItemPosition()).toString());
-                    entitasTransaksi.setTanggal(tanggalTransaksi.getText().toString());
-                    entitasTransaksi.setJumlah(Double.valueOf(jumlah.getText().toString()));
-                    entitasTransaksi.setKeterangan(keterangan.getText().toString());
+                    String tipe = spinnerTipeTransaksi.getSelectedItem().toString();
+                    String tanggal = tanggalTransaksi.getText().toString();
+                    String kategori = spinnerKategori.getSelectedItem().toString();
+                    int jumlahTransaksi = Integer.parseInt(jumlah.getText().toString());
+                    String keteranganTransaksi = keterangan.getText().toString();
 
+                    entitasTransaksi = new EntitasTransaksi();
+                    entitasTransaksi.setTipe(tipe);
+                    entitasTransaksi.setTanggal(tanggal);
+                    entitasTransaksi.setKategori(kategori);
+                    entitasTransaksi.setJumlah(jumlahTransaksi);
+                    entitasTransaksi.setKeterangan(keteranganTransaksi);
                     //Insert data in database
                     db.transaksiDao().tambahTransaksi(entitasTransaksi);
 

@@ -63,7 +63,7 @@
                     android:gravity="center_horizontal"
                     android:text="0,00"
                     android:textColor="@color/colorEmerald"
-                    android:textSize="@dimen/font14"
+                    android:textSize="@dimen/font16"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -95,7 +95,7 @@
                     android:gravity="center_horizontal"
                     android:text="0,00"
                     android:textColor="@color/colorOrange"
-                    android:textSize="@dimen/font14"
+                    android:textSize="@dimen/font16"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -119,28 +119,28 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Total_Saldo_Keseluruhan"
+                    android:id="@+id/TV_Total_Saldo_Keseluruhan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/proxima_nova_alt_light"
                     android:gravity="center_horizontal"
                     android:text="0,00"
-                    android:textColor="@color/colorEmerald"
-                    android:textSize="@dimen/font14"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/font16"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_transaksi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_margin="@dimen/dimen10"
-                android:layout_below="@id/info_total_pemasukan_pengeluaran_saldo" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_transaksi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_total_pemasukan_pengeluaran_saldo"
+            android:layout_margin="@dimen/dimen10"
+            android:background="@color/white" />
 
     </RelativeLayout>
 

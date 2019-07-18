@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -33,23 +34,22 @@ import java.util.Locale;
 
 public class UbahTransaksiActivity extends AppCompatActivity {
 
-    private Button buttonHapus, buttonUbah, buttonYa, buttonTidak;
-    private Spinner spinnerTipeTransaksi, spinnerKategori;
+    private Button buttonHapus, buttonUbah;
+    private Spinner spinnerTipeTransaksi;
+    private Spinner spinnerKategori;
     private Toolbar toolbar;
-    private EditText tanggalTransaksi, keterangan, jumlah;
-    private TextView dialogHapus;
+    private EditText tanggalTransaksi, keteranganTransaksi, jumlahTransaksi;
+    private TextView konfirmHapus;
     public static DatabaseAplikasi db;
     DatePickerDialog datePickerDialog;
     private Calendar calendar;
     private int mYear, mMonth, mDay;
     private EntitasTransaksi entitasTransaksi;
-    private Dialog dialog;
 
     private String[] jenisKategori = {
             "Gaji Bulanan",
             "Belanja Umum"
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,8 @@ public class UbahTransaksiActivity extends AppCompatActivity {
         spinnerTipeTransaksi = findViewById(R.id.Spinner_Jenis_Transaksi);
         tanggalTransaksi = findViewById(R.id.ET_Tanggal);
         spinnerKategori = findViewById(R.id.Spinner_Jenis_Kategori);
-        jumlah = findViewById(R.id.ET_Jumlah);
-        keterangan = findViewById(R.id.ET_Keterangan);
+        jumlahTransaksi = findViewById(R.id.ET_Ubah_Jumlah);
+        keteranganTransaksi = findViewById(R.id.ET_Keterangan);
         buttonUbah = findViewById(R.id.BT_Ubah_Transaksi);
         buttonHapus = findViewById(R.id.BT_Hapus_Transaksi);
 
@@ -100,10 +100,14 @@ public class UbahTransaksiActivity extends AppCompatActivity {
                 DatabaseAplikasi.class, "transaksi")
                 .fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
+        Intent intent = getIntent();
 
-        // Set Current Date
-        String date_n = new SimpleDateFormat("dd/M/yyyy", Locale.getDefault()).format(new Date());
-        tanggalTransaksi.setText(date_n);
+        assert intent != null;
+
+        jumlahTransaksi.setText(String.valueOf(intent.getIntExtra("jumlah", 0)));
+        tanggalTransaksi.setText(intent.getStringExtra("tanggal"));
+        keteranganTransaksi.setText(intent.getStringExtra("keterangan"));
+
 
         //ET Date Click Listener
         tanggalTransaksi.setOnClickListener(new View.OnClickListener() {
@@ -129,14 +133,23 @@ public class UbahTransaksiActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (!jumlah.getText().toString().isEmpty() && !keterangan.getText().toString().isEmpty()) {
+
+                if (!jumlahTransaksi.getText().toString().isEmpty() && !keteranganTransaksi.getText().toString().isEmpty()) {
+                    int idTransaksi = getIntent().getIntExtra("id", 0);
+                    String tipe = spinnerTipeTransaksi.getSelectedItem().toString();
+                    String tanggal = tanggalTransaksi.getText().toString();
+                    String kategori = spinnerKategori.getSelectedItem().toString();
+                    int jumlah = Integer.parseInt(jumlahTransaksi.getText().toString());
+                    String keterangan = keteranganTransaksi.getText().toString();
 
                     entitasTransaksi = new EntitasTransaksi();
-                    entitasTransaksi.setTipe(spinnerTipeTransaksi.getItemAtPosition(spinnerTipeTransaksi.getSelectedItemPosition()).toString());
-                    entitasTransaksi.setKategori(spinnerKategori.getItemAtPosition(spinnerKategori.getSelectedItemPosition()).toString());
-                    entitasTransaksi.setTanggal(tanggalTransaksi.getText().toString());
-                    entitasTransaksi.setJumlah(Double.valueOf(jumlah.getText().toString()));
-                    entitasTransaksi.setKeterangan(keterangan.getText().toString());
+                    entitasTransaksi.setId_transaksi(idTransaksi);
+                    entitasTransaksi.setTipe(tipe);
+                    entitasTransaksi.setTanggal(tanggal);
+                    entitasTransaksi.setKategori(kategori);
+                    entitasTransaksi.setJumlah(jumlah);
+                    entitasTransaksi.setKeterangan(keterangan);
+
 
                     //Update data in database
                     db.transaksiDao().ubahTransaksi(entitasTransaksi);
@@ -163,14 +176,19 @@ public class UbahTransaksiActivity extends AppCompatActivity {
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(UbahTransaksiActivity.this, R.style.DialogTheme);
         View view = getLayoutInflater().inflate(R.layout.dialog_konfirmasi_hapus, null);
 
-        dialogHapus = view.findViewById(R.id.TV_Konfirmasi_Hapus);
-        dialogHapus.setText("Apakah Anda Yakin Ingin Menghapus Transaksi Ini?");
+        konfirmHapus = view.findViewById(R.id.TV_Konfirmasi_Hapus);
+        konfirmHapus.setText("Apakah Anda yakin Ingin Menghapus Transaksi Ini?");
+
 
         mbuilder.setPositiveButton("HAPUS", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                int idTransaksi = getIntent().getIntExtra("id", 0);
+                entitasTransaksi = new EntitasTransaksi();
+                entitasTransaksi.setId_transaksi(idTransaksi);
                 db.transaksiDao().hapusTransaksi(entitasTransaksi);
                 Toast.makeText(UbahTransaksiActivity.this, "Data Berhasil Dihapus!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(UbahTransaksiActivity.this, MainActivity.class));
             }
         });
 
