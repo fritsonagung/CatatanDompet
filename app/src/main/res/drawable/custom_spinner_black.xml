@@ -21,7 +21,8 @@
         </item>
         <item >
             <bitmap android:gravity="bottom|right"
-                android:src="@drawable/drop_arrow"/>
+                android:src="@drawable/drop_arrow"
+                android:tint="@color/colorLightBlue"/>
         </item>
     </layer-list></item>
 </selector>

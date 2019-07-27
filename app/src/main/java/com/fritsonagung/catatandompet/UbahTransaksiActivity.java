@@ -1,18 +1,14 @@
 package com.fritsonagung.catatandompet;
 
-import android.Manifest;
-import android.app.Activity;
+
 import android.app.DatePickerDialog;
-import android.app.Dialog;
+
 import android.arch.persistence.room.Room;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,10 +23,18 @@ import android.widget.Toast;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+
+/**
+ * Developed By:
+ * Nama : Fritson Agung Julians Ayomi
+ * NIM  : 10116076
+ * Kelas: AKB-2
+ * Tanggal Pengerjaan : 5 Juli 2019
+ **/
 
 public class UbahTransaksiActivity extends AppCompatActivity {
 
@@ -46,11 +50,6 @@ public class UbahTransaksiActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay;
     private EntitasTransaksi entitasTransaksi;
 
-    private String[] jenisKategori = {
-            "Gaji Bulanan",
-            "Belanja Umum"
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,19 +63,41 @@ public class UbahTransaksiActivity extends AppCompatActivity {
         buttonUbah = findViewById(R.id.BT_Ubah_Transaksi);
         buttonHapus = findViewById(R.id.BT_Hapus_Transaksi);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(UbahTransaksiActivity.this,
+        final ArrayAdapter<String> adapterTipeTransaksi = new ArrayAdapter<String>(UbahTransaksiActivity.this,
                 R.layout.spinner_item, getResources().
                 getStringArray(R.array.jenis_transaksi_dan_kategori));
-        adapter.setDropDownViewResource(R.layout.spinner_item);
-        spinnerTipeTransaksi.setAdapter(adapter);
+        adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+        spinnerTipeTransaksi.setAdapter(adapterTipeTransaksi);
 
-        // inisialiasi Array Adapter dengan memasukkan string array di atas
-        final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, jenisKategori);
+        spinnerTipeTransaksi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String spinnerValue = spinnerTipeTransaksi.getSelectedItem().toString();
+                Intent intent = getIntent();
+                assert intent != null;
+                if (spinnerValue.equals("Pemasukan")) {
+                    final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(UbahTransaksiActivity.this,
+                            R.layout.spinner_item, getResources().
+                            getStringArray(R.array.listKategoriPemasukan));
+                    adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerKategori.setAdapter(adapterKategori);
+                    spinnerKategori.setSelection(adapterKategori.getPosition(intent.getStringExtra("kategori")));
+                } else if (spinnerValue.equals("Pengeluaran")) {
+                    final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(UbahTransaksiActivity.this,
+                            R.layout.spinner_item, getResources().
+                            getStringArray(R.array.listKategoriPengeluaran));
+                    adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerKategori.setAdapter(adapterKategori);
+                    spinnerKategori.setSelection(adapterKategori.getPosition(intent.getStringExtra("kategori")));
+                }
+            }
 
-        // mengeset Array Adapter ke Spinner
-        adapterKategori.setDropDownViewResource(R.layout.spinner_item);
-        spinnerKategori.setAdapter(adapterKategori);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(UbahTransaksiActivity.this, "Mohon Lengkapi Data Transaksi!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,8 +106,6 @@ public class UbahTransaksiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-                Intent intent = new Intent(UbahTransaksiActivity.this, MainActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -101,11 +120,11 @@ public class UbahTransaksiActivity extends AppCompatActivity {
                 .fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
         Intent intent = getIntent();
-
         assert intent != null;
 
-        jumlahTransaksi.setText(String.valueOf(intent.getIntExtra("jumlah", 0)));
+        spinnerTipeTransaksi.setSelection(adapterTipeTransaksi.getPosition(intent.getStringExtra("tipe")));
         tanggalTransaksi.setText(intent.getStringExtra("tanggal"));
+        jumlahTransaksi.setText(String.valueOf(intent.getIntExtra("jumlah", 0)));
         keteranganTransaksi.setText(intent.getStringExtra("keterangan"));
 
 
@@ -121,7 +140,7 @@ public class UbahTransaksiActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                tanggalTransaksi.setText(day + "/" + (month + 1) + "/" + year);
+                                tanggalTransaksi.setText(day + "-" + (month + 1) + "-" + year);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -131,36 +150,7 @@ public class UbahTransaksiActivity extends AppCompatActivity {
         buttonUbah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-                if (!jumlahTransaksi.getText().toString().isEmpty() && !keteranganTransaksi.getText().toString().isEmpty()) {
-                    int idTransaksi = getIntent().getIntExtra("id", 0);
-                    String tipe = spinnerTipeTransaksi.getSelectedItem().toString();
-                    String tanggal = tanggalTransaksi.getText().toString();
-                    String kategori = spinnerKategori.getSelectedItem().toString();
-                    int jumlah = Integer.parseInt(jumlahTransaksi.getText().toString());
-                    String keterangan = keteranganTransaksi.getText().toString();
-
-                    entitasTransaksi = new EntitasTransaksi();
-                    entitasTransaksi.setId_transaksi(idTransaksi);
-                    entitasTransaksi.setTipe(tipe);
-                    entitasTransaksi.setTanggal(tanggal);
-                    entitasTransaksi.setKategori(kategori);
-                    entitasTransaksi.setJumlah(jumlah);
-                    entitasTransaksi.setKeterangan(keterangan);
-
-
-                    //Update data in database
-                    db.transaksiDao().ubahTransaksi(entitasTransaksi);
-
-                    Toast.makeText(UbahTransaksiActivity.this, "Data Berhasil Diubah!", Toast.LENGTH_SHORT).show();
-
-                    startActivity(new Intent(UbahTransaksiActivity.this, MainActivity.class));
-
-                } else {
-                    Toast.makeText(UbahTransaksiActivity.this, "Mohon Lengkapi Data Transaksi!", Toast.LENGTH_SHORT).show();
-                }
+                ubahDataTransaksi();
             }
         });
 
@@ -172,12 +162,49 @@ public class UbahTransaksiActivity extends AppCompatActivity {
         });
     }
 
+    public void ubahDataTransaksi(){
+        if (!jumlahTransaksi.getText().toString().isEmpty() && !keteranganTransaksi.getText().toString().isEmpty()) {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+
+            Date tanggal = null;
+            try {
+                tanggal = sdf.parse(String.valueOf(tanggalTransaksi.getText()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            int idTransaksi = getIntent().getIntExtra("id", 0);
+            String tipe = spinnerTipeTransaksi.getSelectedItem().toString();
+            String kategori = spinnerKategori.getSelectedItem().toString();
+            int jumlah = Integer.parseInt(jumlahTransaksi.getText().toString());
+            String keterangan = keteranganTransaksi.getText().toString();
+
+            entitasTransaksi = new EntitasTransaksi();
+            entitasTransaksi.setId_transaksi(idTransaksi);
+            entitasTransaksi.setTipe(tipe);
+            entitasTransaksi.setTanggal(tanggal);
+            entitasTransaksi.setKategori(kategori);
+            entitasTransaksi.setJumlah(jumlah);
+            entitasTransaksi.setKeterangan(keterangan);
+
+            //Update data in database
+            db.transaksiDao().ubahTransaksi(entitasTransaksi);
+
+            Toast.makeText(UbahTransaksiActivity.this, "Data Berhasil Diubah!", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(UbahTransaksiActivity.this, MainActivity.class));
+        } else {
+            Toast.makeText(UbahTransaksiActivity.this, "Mohon Lengkapi Data Transaksi!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void showDialogKonfirmasiHapus() {
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(UbahTransaksiActivity.this, R.style.DialogTheme);
         View view = getLayoutInflater().inflate(R.layout.dialog_konfirmasi_hapus, null);
 
         konfirmHapus = view.findViewById(R.id.TV_Konfirmasi_Hapus);
-        konfirmHapus.setText("Apakah Anda yakin Ingin Menghapus Transaksi Ini?");
+        konfirmHapus.setText(R.string.konfirmasi_hapus);
 
 
         mbuilder.setPositiveButton("HAPUS", new DialogInterface.OnClickListener() {
@@ -205,6 +232,10 @@ public class UbahTransaksiActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
 }
 

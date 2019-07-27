@@ -7,6 +7,14 @@ import android.support.annotation.NonNull;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ Developed By:
+ Nama : Fritson Agung Julians Ayomi
+ NIM  : 10116076
+ Kelas: AKB-2
+ Tanggal Pengerjaan : 7 Juli 2019
+ **/
+
 public class ExecutorAplikasi {
 
     // For Singleton instantiation

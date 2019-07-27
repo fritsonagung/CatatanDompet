@@ -67,11 +67,27 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/Latout_Tanggal_Antara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_Pilih_Bulan"
+            android:background="@color/colorWhite"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tanggalAntara"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="tanggalAntara"
+                android:textSize="@dimen/font16"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+
         <lecho.lib.hellocharts.view.PieChartView
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen264"
-            android:layout_below="@+id/layout_Pilih_Bulan"
+            android:layout_below="@+id/Latout_Tanggal_Antara"
             android:layout_marginTop="@dimen/dimen2"
             android:background="@color/colorWhite" />
 
@@ -118,7 +134,7 @@
                             android:textSize="@dimen/font18" />
 
                         <TextView
-                            android:id="@+id/Total_Pemasukan_Perbulan"
+                            android:id="@+id/TV_Total_Pemasukan_Perbulan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen10"
@@ -145,7 +161,7 @@
                             android:textSize="@dimen/font18" />
 
                         <TextView
-                            android:id="@+id/Total_Pengeluaran_Perbulan"
+                            android:id="@+id/TV_Total_Pengeluaran_Perbulan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen10"
@@ -175,7 +191,7 @@
                             android:textSize="@dimen/font18" />
 
                         <TextView
-                            android:id="@+id/TV_Total_Saldo_Perbulan"
+                            android:id="@+id/TV_Total_Selisih_Perbulan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen10"
@@ -224,7 +240,7 @@
                             android:textSize="@dimen/font18" />
 
                         <TextView
-                            android:id="@+id/Total_Top_Kategori_Pemasukan_Perbulan"
+                            android:id="@+id/TV_Total_Top_Kategori_Pemasukan_Perbulan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen10"
@@ -272,7 +288,7 @@
                             android:textSize="@dimen/font18" />
 
                         <TextView
-                            android:id="@+id/Total_Top_Kategori_Pengeluaran_Perbulan"
+                            android:id="@+id/TV_Total_Top_Kategori_Pengeluaran_Perbulan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/dimen10"

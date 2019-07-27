@@ -36,9 +36,38 @@
     <string name="hapus">Hapus</string>
     <string name="sub_title_splash">Catat Keuangan Harian Anda</string>
     <string name="ubah">UBAH</string>
+    <string name="coming_soon">Segera!</string>
+    <string name="konfirmasi_hapus">Apakah Anda yakin Ingin Menghapus Transaksi Ini?</string>
 
     <string-array name="jenis_transaksi_dan_kategori">
         <item>Pemasukan</item>
         <item>Pengeluaran</item>
+    </string-array>
+
+
+    <string-array name="listKategoriPemasukan">
+        <item>Gaji</item>
+        <item>Deposito</item>
+        <item>Investasi</item>
+        <item>Penjualan</item>
+        <item>Penyewaan</item>
+        <item>Pengembalian Dana</item>
+        <item>Kupon</item>
+        <item>Bonus</item>
+        <item>Dividen</item>
+        <item>Lain-lain</item>
+    </string-array>
+
+    <string-array name="listKategoriPengeluaran">
+        <item>Asuransi</item>
+        <item>Hiburan</item>
+        <item>Pajak</item>
+        <item>Tagihan</item>
+        <item>Makanan</item>
+        <item>Minuman</item>
+        <item>Kesehatan</item>
+        <item>Transportasi</item>
+        <item>Telepon</item>
+        <item>Lain-lain</item>
     </string-array>
 </resources>

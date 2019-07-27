@@ -14,13 +14,6 @@
         android:icon="@drawable/ic_add"
         android:title="@string/tambah"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/kategori"
-        android:icon="@drawable/ic_categoty_list"
-        android:title="@string/kategori"
-        app:showAsAction="never" />
-
     <item
         android:id="@+id/laporan"
         android:icon="@drawable/ic_report"

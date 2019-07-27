@@ -60,7 +60,7 @@
                         android:id="@+id/Spinner_Jenis_Transaksi"
                         android:layout_width="@dimen/dimen180"
                         android:layout_height="@dimen/dimen40"
-                        android:background="@drawable/custom_spinner"
+                        android:background="@drawable/custom_spinner_black"
                         android:fontFamily="@font/proxima_nova_regular"
                         android:popupBackground="@color/white" />
 
@@ -113,7 +113,7 @@
                         android:id="@+id/Spinner_Jenis_Kategori"
                         android:layout_width="@dimen/dimen180"
                         android:layout_height="@dimen/dimen40"
-                        android:background="@drawable/custom_spinner"
+                        android:background="@drawable/custom_spinner_black"
                         android:fontFamily="@font/proxima_nova_regular"
                         android:popupBackground="@color/white" />
                 </LinearLayout>

@@ -1,10 +1,8 @@
 package com.fritsonagung.catatandompet.Database;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -27,13 +25,22 @@ public interface TransaksiDao {
     @Query("SELECT SUM (jumlah) FROM transaksi AS totalPemasukan WHERE tipe =:tipeTransaksi")
     int hitungTotalTransaksi(String tipeTransaksi);
 
-    @Query("SELECT * FROM transaksi WHERE tanggal = :curTanggal")
-    List<EntitasTransaksi>tampilTransaksiBulanIni(String curTanggal);
+    @Query("SELECT SUM (jumlah) FROM transaksi AS totalBulanan WHERE tipe =:tipeTransaksi " +
+            "AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir")
+    int totalTransaksiBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
 
-    @Query("SELECT * FROM transaksi WHERE tipe LIKE :cari " +
+    @Query("SELECT kategori, MAX(jumlah) FROM " +
+            "(SELECT kategori, SUM(jumlah) AS jumlah FROM transaksi WHERE (tipe = :tipeTransaksi" +
+            " AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir)" +
+            "GROUP BY  kategori)")
+    int topKategoriBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
+
+
+    @Query("SELECT * FROM transaksi WHERE tipe LIKE '%'+:cari+'%' " +
             "OR tanggal LIKE :cari OR kategori LIKE :cari OR jumlah LIKE :cari " +
             "OR keterangan LIKE :cari ")
-    int tampilCariTransaksi(String cari);
+    List<EntitasTransaksi>tampilCariTransaksi(String cari);
+
 
     @Insert
     void tambahTransaksi(EntitasTransaksi entitasTransaksi);

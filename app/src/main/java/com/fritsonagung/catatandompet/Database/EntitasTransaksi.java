@@ -3,7 +3,6 @@ package com.fritsonagung.catatandompet.Database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
 
 import java.util.Date;
 
@@ -19,14 +18,13 @@ import java.util.Date;
 public class EntitasTransaksi {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
     private int id_transaksi;
 
     @ColumnInfo(name = "tipe")
     private String tipe;
 
     @ColumnInfo(name = "tanggal")
-    private String tanggal;
+    private Date tanggal;
 
     @ColumnInfo(name = "kategori")
     private String kategori;
@@ -53,11 +51,11 @@ public class EntitasTransaksi {
         this.tipe = tipe;
     }
 
-    public String getTanggal() {
+    public Date getTanggal() {
         return tanggal;
     }
 
-    public void setTanggal(String tanggal) {
+    public void setTanggal(Date tanggal) {
         this.tanggal = tanggal;
     }
 
@@ -84,4 +82,5 @@ public class EntitasTransaksi {
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
     }
+
 }

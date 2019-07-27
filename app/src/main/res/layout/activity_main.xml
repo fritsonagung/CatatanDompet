@@ -139,7 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/info_total_pemasukan_pengeluaran_saldo"
-            android:layout_margin="@dimen/dimen10"
+            android:layout_margin="@dimen/dimen5"
             android:background="@color/white" />
 
     </RelativeLayout>

@@ -18,6 +18,7 @@ import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
 import com.fritsonagung.catatandompet.R;
 import com.fritsonagung.catatandompet.UbahTransaksiActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -70,7 +71,9 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
             holder.jumlah.setTextColor(Color.parseColor("#F68E4F"));
         }
 
-        holder.tanggal.setText(transaksi.getTanggal());
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-M-yyyy");
+        String dateToBeSet=sdf.format(listTransaksi.get(position).getTanggal());
+        holder.tanggal.setText(dateToBeSet);
         holder.kategori.setText(transaksi.getKategori());
         holder.keterangan.setText(transaksi.getKeterangan());
     }
@@ -103,15 +106,20 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
         @Override
         public void onClick(View v) {
             onTransaksiListener.onClickTransaksi(getAdapterPosition());
+
+            SimpleDateFormat sdf=new SimpleDateFormat("dd-M-yyyy");
+            String date=sdf.format(listTransaksi.get(getAdapterPosition()).getTanggal());
+
             Intent intent = new Intent(mContext, UbahTransaksiActivity.class);
             intent.putExtra("id",listTransaksi.get(getAdapterPosition()).getId_transaksi());
             intent.putExtra("tipe", listTransaksi.get(getAdapterPosition()).getTipe());
-            intent.putExtra("tanggal",listTransaksi.get(getAdapterPosition()).getTanggal());
+            intent.putExtra("tanggal",date);
             intent.putExtra("kategori",listTransaksi.get(getAdapterPosition()).getKategori());
             intent.putExtra("jumlah",listTransaksi.get(getAdapterPosition()).getJumlah());
             intent.putExtra("keterangan", listTransaksi.get(getAdapterPosition()).getKeterangan());
 
             mContext.startActivity(intent);
+
         }
     }
 

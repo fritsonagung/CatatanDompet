@@ -8,16 +8,13 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -42,15 +39,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterTransaksi.OnTransaksiListener {
 
     private boolean sedangMencari = false;
-    private AppCompatDialog dialog;
-    private Button buttonTentang;
     private AdapterTransaksi adapterTransaksi;
     public static DatabaseAplikasi db;
     private RecyclerView recyclerView;
     private TextView totalSaldoKeseluruhan, totalPemasukanKeseluruhan, totalPengeluaranKeseluruhan;
     private int totalSaldo, totalPemasukan, totalPengeluaran;
-    long firstDate;
+
     List<EntitasTransaksi> listTransaksi = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         totalSaldoKeseluruhan = findViewById(R.id.TV_Total_Saldo_Keseluruhan);
 
         getTotalTransaksi();
-
     }
 
     @Override
@@ -112,11 +107,6 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
 
         if (id == R.id.action_tambah) {
             Intent i = new Intent(getApplicationContext(), TambahTransaksiActivity.class);
-            final Bundle b = new Bundle();
-            startActivity(i);
-            return true;
-        } else if (id == R.id.kategori) {
-            Intent i = new Intent(getApplicationContext(), KategoriActivity.class);
             startActivity(i);
             return true;
         } else if (id == R.id.laporan) {
@@ -132,9 +122,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     }
 
 
-    public void showDialogTentang()
-
-    {
+    public void showDialogTentang() {
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(MainActivity.this, R.style.DialogTheme);
         View view = getLayoutInflater().inflate(R.layout.dialog_tentang, null);
 
@@ -156,15 +144,6 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
                 DatabaseAplikasi.class, "transaksi")
                 .fallbackToDestructiveMigration().allowMainThreadQueries().build();
         listTransaksi = db.transaksiDao().tampilSemuaTransaksi();
-
-        //just checking data from db
-        for (int i = 0; i < listTransaksi.size(); i++) {
-            Log.e("Aplikasi", listTransaksi.get(i).getTipe() + i);
-            Log.e("Aplikasi", listTransaksi.get(i).getTanggal() + i);
-            Log.e("Aplikasi", listTransaksi.get(i).getKategori() + i);
-            Log.e("Aplikasi", String.valueOf(listTransaksi.get(i).getJumlah() + i));
-            Log.e("Aplikasi", listTransaksi.get(i).getKeterangan() + i);
-        }
     }
 
     private void initRecyclerView() {
@@ -184,11 +163,11 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     @Override
     public void onClickTransaksi(int position) {
         listTransaksi.get(position);
-        Intent intent = new Intent(this, UbahTransaksiActivity.class);
-        startActivity(intent);
+        Intent i = new Intent(this, UbahTransaksiActivity.class);
+        startActivity(i);
     }
 
-    private void getTotalTransaksi(){
+    private void getTotalTransaksi() {
 
         ExecutorAplikasi.getInstance().diskIO().execute(new Runnable() {
             @Override
@@ -201,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
                 totalSaldo = saldo;
             }
         });
+
         ExecutorAplikasi.getInstance().mainThread().execute(new Runnable() {
             @Override
             public void run() {
@@ -209,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
                 totalPengeluaranKeseluruhan.setText(String.valueOf(totalPengeluaran));
             }
         });
-
-
     }
+
 }
+

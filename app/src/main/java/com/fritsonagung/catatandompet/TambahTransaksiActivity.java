@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,14 +40,11 @@ public class TambahTransaksiActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private EditText tanggalTransaksi, keterangan, jumlah;
     public static DatabaseAplikasi db;
-    DatePickerDialog datePickerDialog;
+    private DatePickerDialog datePickerDialog;
     private Calendar calendar;
     private int mYear, mMonth, mDay;
     private EntitasTransaksi entitasTransaksi;
-    private String[] jenisKategori = {
-            "Gaji Bulanan",
-            "Belanja Umum"
-    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +60,43 @@ public class TambahTransaksiActivity extends AppCompatActivity {
         buttonBatal = findViewById(R.id.BT_Batal_Transaksi);
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(TambahTransaksiActivity.this,
+        final ArrayAdapter<String> adapterTipeTransaksi = new ArrayAdapter<String>(TambahTransaksiActivity.this,
                 R.layout.spinner_item, getResources().
                 getStringArray(R.array.jenis_transaksi_dan_kategori));
-        adapter.setDropDownViewResource(R.layout.spinner_item);
-        spinnerTipeTransaksi.setAdapter(adapter);
+        adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+        spinnerTipeTransaksi.setAdapter(adapterTipeTransaksi);
 
-        // inisialiasi Array Adapter dengan memasukkan string array di atas
-        final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, jenisKategori);
 
-        // mengeset Array Adapter ke Spinner
-        adapterKategori.setDropDownViewResource(R.layout.spinner_item);
-        spinnerKategori.setAdapter(adapterKategori);
+        final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(TambahTransaksiActivity.this,
+                R.layout.spinner_item, getResources().
+                getStringArray(R.array.listKategoriPemasukan));
+        adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+
+
+        spinnerTipeTransaksi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String spinnerValue = spinnerTipeTransaksi.getSelectedItem().toString();
+                if (spinnerValue.equals("Pemasukan")) {
+                    final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(TambahTransaksiActivity.this,
+                            R.layout.spinner_item, getResources().
+                            getStringArray(R.array.listKategoriPemasukan));
+                    adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerKategori.setAdapter(adapterKategori);
+                }else if (spinnerValue.equals("Pengeluaran")){
+                    final ArrayAdapter<String> adapterKategori = new ArrayAdapter<String>(TambahTransaksiActivity.this,
+                            R.layout.spinner_item, getResources().
+                            getStringArray(R.array.listKategoriPengeluaran));
+                    adapterTipeTransaksi.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerKategori.setAdapter(adapterKategori);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(TambahTransaksiActivity.this, "Mohon Lengkapi Data Transaksi!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,7 +120,7 @@ public class TambahTransaksiActivity extends AppCompatActivity {
 
 
         // Set Current Date
-        String date_n = new SimpleDateFormat("dd/M/yyyy", Locale.getDefault()).format(new Date());
+        String date_n = new SimpleDateFormat("dd-M-yyyy", Locale.getDefault()).format(new Date());
         tanggalTransaksi.setText(date_n);
 
         //ET Date Click Listener
@@ -112,7 +135,7 @@ public class TambahTransaksiActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                tanggalTransaksi.setText(day + "/" + (month + 1) + "/" + year);
+                                tanggalTransaksi.setText(day + "-" + (month + 1) + "-" + year);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -122,32 +145,7 @@ public class TambahTransaksiActivity extends AppCompatActivity {
         buttonSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                if (!jumlah.getText().toString().isEmpty() && !keterangan.getText().toString().isEmpty()) {
-
-                    String tipe = spinnerTipeTransaksi.getSelectedItem().toString();
-                    String tanggal = tanggalTransaksi.getText().toString();
-                    String kategori = spinnerKategori.getSelectedItem().toString();
-                    int jumlahTransaksi = Integer.parseInt(jumlah.getText().toString());
-                    String keteranganTransaksi = keterangan.getText().toString();
-
-                    entitasTransaksi = new EntitasTransaksi();
-                    entitasTransaksi.setTipe(tipe);
-                    entitasTransaksi.setTanggal(tanggal);
-                    entitasTransaksi.setKategori(kategori);
-                    entitasTransaksi.setJumlah(jumlahTransaksi);
-                    entitasTransaksi.setKeterangan(keteranganTransaksi);
-                    //Insert data in database
-                    db.transaksiDao().tambahTransaksi(entitasTransaksi);
-
-                    Toast.makeText(TambahTransaksiActivity.this, "Data Berhasil Disimpan!", Toast.LENGTH_SHORT).show();
-
-                    startActivity(new Intent(TambahTransaksiActivity.this, MainActivity.class));
-
-                } else {
-                    Toast.makeText(TambahTransaksiActivity.this, "Mohon Lengkapi Data Transaksi!", Toast.LENGTH_SHORT).show();
-                }
+                simpanDataTransaski();
             }
         });
 
@@ -158,6 +156,41 @@ public class TambahTransaksiActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void simpanDataTransaski(){
+
+        if (!jumlah.getText().toString().isEmpty() && !keterangan.getText().toString().isEmpty()) {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+
+            Date tanggal = null;
+            try {
+                tanggal = sdf.parse(String.valueOf(tanggalTransaksi.getText()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            String tipe = spinnerTipeTransaksi.getSelectedItem().toString();
+            String kategori = spinnerKategori.getSelectedItem().toString();
+            int jumlahTransaksi = Integer.parseInt(jumlah.getText().toString());
+            String keteranganTransaksi = keterangan.getText().toString();
+
+            entitasTransaksi = new EntitasTransaksi();
+            entitasTransaksi.setTipe(tipe);
+            entitasTransaksi.setTanggal(tanggal);
+            entitasTransaksi.setKategori(kategori);
+            entitasTransaksi.setJumlah(jumlahTransaksi);
+            entitasTransaksi.setKeterangan(keteranganTransaksi);
+            //Insert data in database
+            db.transaksiDao().tambahTransaksi(entitasTransaksi);
+
+            Toast.makeText(TambahTransaksiActivity.this, "Data Berhasil Disimpan!", Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(TambahTransaksiActivity.this, MainActivity.class));
+        } else {
+            Toast.makeText(TambahTransaksiActivity.this, "Mohon Lengkapi Data Transaksi!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

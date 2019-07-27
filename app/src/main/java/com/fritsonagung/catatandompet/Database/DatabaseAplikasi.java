@@ -1,10 +1,11 @@
 package com.fritsonagung.catatandompet.Database;
 
-
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
+
 
 
 /**
@@ -15,12 +16,14 @@ import android.content.Context;
  Tanggal Pengerjaan : 7 Juli 2019
  **/
 
-@Database(entities = {EntitasTransaksi.class}, version = 6, exportSchema = false)
+@Database(entities = {EntitasTransaksi.class}, version = 1, exportSchema = false)
+@TypeConverters(DateConverter.class)
 public abstract class DatabaseAplikasi extends RoomDatabase {
 
     private static volatile DatabaseAplikasi INSTANCE;
 
     public static DatabaseAplikasi getDatabase(final Context context) {
+
         if (INSTANCE == null) {
             synchronized (DatabaseAplikasi.class) {
                 if (INSTANCE == null) {
@@ -35,7 +38,6 @@ public abstract class DatabaseAplikasi extends RoomDatabase {
     }
 
     public abstract TransaksiDao transaksiDao();
-
 }
 
 
