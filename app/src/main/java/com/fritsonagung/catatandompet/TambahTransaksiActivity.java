@@ -176,7 +176,7 @@ public class TambahTransaksiActivity extends AppCompatActivity {
             int jumlahTransaksi = Integer.parseInt(jumlah.getText().toString());
             String keteranganTransaksi = keterangan.getText().toString();
 
-            entitasTransaksi = new EntitasTransaksi();
+            entitasTransaksi = new EntitasTransaksi(tipe,tanggal,kategori,jumlahTransaksi,keteranganTransaksi);
             entitasTransaksi.setTipe(tipe);
             entitasTransaksi.setTanggal(tanggal);
             entitasTransaksi.setKategori(kategori);

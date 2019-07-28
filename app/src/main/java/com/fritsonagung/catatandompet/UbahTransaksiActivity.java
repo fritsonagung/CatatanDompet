@@ -180,7 +180,7 @@ public class UbahTransaksiActivity extends AppCompatActivity {
             int jumlah = Integer.parseInt(jumlahTransaksi.getText().toString());
             String keterangan = keteranganTransaksi.getText().toString();
 
-            entitasTransaksi = new EntitasTransaksi();
+            entitasTransaksi = new EntitasTransaksi(tipe,tanggal,kategori,jumlah,keterangan);
             entitasTransaksi.setId_transaksi(idTransaksi);
             entitasTransaksi.setTipe(tipe);
             entitasTransaksi.setTanggal(tanggal);
@@ -211,7 +211,7 @@ public class UbahTransaksiActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 int idTransaksi = getIntent().getIntExtra("id", 0);
-                entitasTransaksi = new EntitasTransaksi();
+                entitasTransaksi = new EntitasTransaksi(idTransaksi);
                 entitasTransaksi.setId_transaksi(idTransaksi);
                 db.transaksiDao().hapusTransaksi(entitasTransaksi);
                 Toast.makeText(UbahTransaksiActivity.this, "Data Berhasil Dihapus!", Toast.LENGTH_SHORT).show();

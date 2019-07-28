@@ -14,15 +14,17 @@
         android:icon="@drawable/ic_add"
         android:title="@string/tambah"
         app:showAsAction="always" />
+
     <item
         android:id="@+id/laporan"
         android:icon="@drawable/ic_report"
         android:title="@string/laporan"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/tentang"
         android:icon="@drawable/ic_about"
         android:title="@string/tentang"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
+
 </menu>

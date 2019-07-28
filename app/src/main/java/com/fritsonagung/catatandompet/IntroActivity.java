@@ -39,7 +39,7 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
         List<OnboarderPage> pages = Arrays.asList(
                 new OnboarderPage.Builder()
                         .title("Pemasukan")
-                        .description("Kelola Pemasukan Anda")
+                        .description("Catat Pemasukan Harian Anda Untuk Pengelolaan Keuangan Bulanan Yang Lebih Baik")
                         .imageResourceId(R.drawable.income)
                         .backgroundColor(R.color.colorLightBlue)
                         .titleColor(R.color.white)
@@ -49,7 +49,7 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
 
                 new OnboarderPage.Builder()
                         .title("Pengeluaran")
-                        .description("Kelola Pengeluaran Anda")
+                        .description("Catat Pengeluaran Harian Anda Untuk Pengelolaan Keuangan Bulanan Yang Lebih Baik")
                         .imageResourceId(R.drawable.expenses)
                         .backgroundColor(R.color.colorLightBlue)
                         .titleColor(R.color.white)
@@ -59,7 +59,7 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
 
                 new OnboarderPage.Builder()
                         .title("Laporan")
-                        .description("Lihat Laporan Bulanan")
+                        .description("Lihat Laporan Keuangan Bulanan, Ketahui Pemasukan dan Pengeluaran Perbulan Anda")
                         .imageResourceId(R.drawable.report)
                         .backgroundColor(R.color.colorLightBlue)
                         .titleColor(R.color.white)

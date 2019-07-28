@@ -28,26 +28,17 @@
         app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
-            android:id="@+id/layout_Pilih_Bulan"
+            android:id="@+id/layout_nama_Bulan"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen64"
+            android:layout_height="wrap_content"
             android:background="@color/colorWhite"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/IBT_Prev"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen30"
-                android:background="@color/white"
-                android:layout_marginStart="@dimen/dimen30"
-                android:src="@drawable/ic_left_pointer" />
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/TV_Nama_Bulan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/dimen5"
                 android:layout_weight="1"
                 android:fontFamily="@font/proxima_nova_bold"
                 android:gravity="center"
@@ -56,38 +47,32 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/font18" />
 
-            <ImageButton
-                android:id="@+id/IBT_Next"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen30"
-                android:layout_marginEnd="@dimen/dimen30"
-                android:background="@color/white"
-                android:src="@drawable/ic_right_pointer" />
-
-
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/Latout_Tanggal_Antara"
+            android:id="@+id/Layout_Tanggal_Antara"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_Pilih_Bulan"
+            android:layout_below="@+id/layout_nama_Bulan"
             android:background="@color/colorWhite"
             android:gravity="center">
+
             <TextView
                 android:id="@+id/tanggalAntara"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:padding="@dimen/dimen10"
                 android:text="tanggalAntara"
-                android:textSize="@dimen/font16"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font16" />
+
         </LinearLayout>
 
-        <lecho.lib.hellocharts.view.PieChartView
+        <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen264"
-            android:layout_below="@+id/Latout_Tanggal_Antara"
+            android:layout_below="@+id/Layout_Tanggal_Antara"
             android:layout_marginTop="@dimen/dimen2"
             android:background="@color/colorWhite" />
 

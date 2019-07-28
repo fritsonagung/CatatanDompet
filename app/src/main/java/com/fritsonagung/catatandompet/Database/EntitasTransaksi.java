@@ -2,6 +2,7 @@ package com.fritsonagung.catatandompet.Database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
@@ -34,6 +35,26 @@ public class EntitasTransaksi {
 
     @ColumnInfo(name = "keterangan")
     private String keterangan;
+
+
+    public EntitasTransaksi(String tipe, Date tanggal, String kategori, int jumlah, String keterangan) {
+        this.tipe = tipe;
+        this.tanggal = tanggal;
+        this.kategori = kategori;
+        this.jumlah = jumlah;
+        this.keterangan = keterangan;
+    }
+
+    @Ignore
+    public EntitasTransaksi(int idTransaksi) {
+        this.id_transaksi = idTransaksi;
+    }
+
+    @Ignore
+    public EntitasTransaksi(String tipe, int jumlah) {
+        this.tipe = tipe;
+        this.jumlah = jumlah;
+    }
 
     public int getId_transaksi() {
         return id_transaksi;

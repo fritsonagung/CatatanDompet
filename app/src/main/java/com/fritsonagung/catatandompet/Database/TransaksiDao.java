@@ -5,6 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.database.Cursor;
 
 import java.util.List;
 
@@ -22,24 +23,30 @@ public interface TransaksiDao {
     @Query("SELECT * FROM transaksi ORDER BY tanggal DESC")
     List<EntitasTransaksi> tampilSemuaTransaksi();
 
-    @Query("SELECT SUM (jumlah) FROM transaksi AS totalPemasukan WHERE tipe =:tipeTransaksi")
+    @Query("SELECT SUM (jumlah) FROM transaksi AS totalPemasukan " +
+            "WHERE tipe =:tipeTransaksi")
     int hitungTotalTransaksi(String tipeTransaksi);
 
-    @Query("SELECT SUM (jumlah) FROM transaksi AS totalBulanan WHERE tipe =:tipeTransaksi " +
+    @Query("SELECT SUM(jumlah) FROM transaksi WHERE tipe= :tipeTransaksi " +
             "AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir")
-    int totalTransaksiBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
+    int hitungJumlahGraphTransaksi(String tipeTransaksi,long tanggalAwal, long tanggalAkhir);
 
-    @Query("SELECT kategori, MAX(jumlah) FROM " +
-            "(SELECT kategori, SUM(jumlah) AS jumlah FROM transaksi WHERE (tipe = :tipeTransaksi" +
-            " AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir)" +
-            "GROUP BY  kategori)")
+    @Query("SELECT SUM (jumlah) FROM transaksi AS totalBulanan " +
+            "WHERE tipe =:tipeTransaksi " +
+            "AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir")
+    int hitungTotalTransaksiBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
+
+    @Query("SELECT kategori, JumlahKategori FROM( SELECT kategori, SUM(jumlah) AS JumlahKategori FROM transaksi WHERE tipe = :tipeTransaksi AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir GROUP BY kategori) " +
+            "AS tempTable WHERE JumlahKategori = (SELECT MAX(JumlahKategori) FROM ( SELECT kategori, SUM(jumlah) " +
+            "AS JumlahKategori FROM transaksi WHERE tipe = :tipeTransaksi AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir GROUP BY kategori) AS tempTable)")
     int topKategoriBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
 
 
-    @Query("SELECT * FROM transaksi WHERE tipe LIKE '%'+:cari+'%' " +
+    /*@Query("SELECT * FROM transaksi WHERE tipe LIKE '%'+:cari+'%' " +
             "OR tanggal LIKE :cari OR kategori LIKE :cari OR jumlah LIKE :cari " +
             "OR keterangan LIKE :cari ")
     List<EntitasTransaksi>tampilCariTransaksi(String cari);
+    */
 
 
     @Insert
