@@ -13,30 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".View.GrafikKategoriPengeluaranActivity"
+        <activity android:name=".Activity.GrafikKategoriPengeluaranActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape"/>
-        <activity android:name=".View.GrafikKategoriPemasukanActivity"
+        <activity android:name=".Activity.GrafikKategoriPemasukanActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".View.UbahTransaksiActivity"
+            android:name=".Activity.UbahTransaksiActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.IntroActivity"
+            android:name=".Activity.IntroActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.LaporanActivity"
+            android:name=".Activity.LaporanActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.TambahTransaksiActivity"
+            android:name=".Activity.TambahTransaksiActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".View.SplashScreen"
+            android:name=".Activity.SplashScreen"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.MainActivity"
+            android:name=".Activity.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
     </application>

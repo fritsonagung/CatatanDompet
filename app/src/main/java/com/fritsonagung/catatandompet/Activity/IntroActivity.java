@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet.View;
+package com.fritsonagung.catatandompet.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;

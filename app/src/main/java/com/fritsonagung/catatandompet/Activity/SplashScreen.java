@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet.View;
+package com.fritsonagung.catatandompet.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +24,7 @@ import java.util.TimerTask;
 public class SplashScreen extends AppCompatActivity {
 
     //Create variable
-    private static int SPLASH_TIME_OUT = 0;
+    private static int SPLASH_TIME_OUT = 500;
     private ImageView logo;
     private TextView title;
     private TextView subtitle;
@@ -49,6 +49,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(new Intent(SplashScreen.this, IntroActivity.class));
                 finish();
             }
-        }, 0);
+        }, 3000);
     }
 }

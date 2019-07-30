@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
 import com.fritsonagung.catatandompet.R;
-import com.fritsonagung.catatandompet.View.UbahTransaksiActivity;
+import com.fritsonagung.catatandompet.Activity.UbahTransaksiActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

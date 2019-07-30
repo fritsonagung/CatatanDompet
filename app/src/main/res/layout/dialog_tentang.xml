@@ -1,42 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen60"
-        android:background="@color/colorLightBlue"
-        android:fontFamily="@font/proxima_nova_bold"
-        android:gravity="center"
-        android:text="@string/catatan_dompet"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/font20" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen30"
-        android:layout_marginEnd="@dimen/dimen30"
-        android:layout_marginTop="@dimen/dimen10"
-        android:gravity="center"
-        android:fontFamily="@font/proxima_nova_regular"
-        android:text="@string/tentang_pengantar"
-        android:textColor="@color/colorBlack"
-        android:textSize="@dimen/font16" />
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="@dimen/dimen30"
-        android:layout_marginTop="@dimen/dimen10"
-        android:layout_marginEnd="@dimen/dimen30"
-        android:fontFamily="@font/proxima_nova_regular"
-        android:text="@string/versi_app"
-        android:textColor="@color/colorBlack"
-        android:textSize="@dimen/font16" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen60"
+            android:background="@color/colorLightBlue"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:gravity="center"
+            android:text="@string/catatan_dompet"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font20" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen30"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen30"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:text="Tentang Aplikasi :"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/font16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen30"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen30"
+            android:fontFamily="@font/proxima_nova_regular"
+            android:gravity="fill_horizontal"
+            android:text="@string/tentang_app"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/font16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen30"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen30"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:text="Versi Aplikasi :"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/font16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginStart="@dimen/dimen30"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen30"
+            android:fontFamily="@font/proxima_nova_regular"
+            android:text="@string/versi_app"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/font16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen30"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen30"
+            android:fontFamily="@font/proxima_nova_bold"
+            android:text="Disclaimer :"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/font16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginStart="@dimen/dimen30"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen30"
+            android:fontFamily="@font/proxima_nova_regular"
+            android:text="@string/disclaimer"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/font16" />
+
+    </LinearLayout>
+
+</ScrollView>

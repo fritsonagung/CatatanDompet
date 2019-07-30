@@ -29,8 +29,12 @@
     <string name="nama_kategori">Nama Kategori</string>
     <string name="jenis_kategori">Jenis Kategori</string>
     <string name="ok">OK</string>
-    <string name="versi_app">Versi : 1.0.0</string>
-    <string name="tentang_pengantar">Anda Menggunakan Versi Aplikasi</string>
+    <string name="versi_app">Anda sedang menggunakan Catatan Dompet Versi : 1.0.</string>
+    <string name="disclaimer">[1] Aplikasi ini bersifat studi dan tidak diperuntunkan untuk kegiatan komersial.
+        [2] Pengembang tidak menjamin bahwa aplikasi ini akan bebas dari error dan kesalahan.
+        [3] Pengembang tidak bertanggung jawab atas kelalaian yang dilakukan oleh pengguna ketika menggunakan aplikasi ini.
+        [4] Pengembang tidak bertanggung jawab atas kegagalan teknis / kegagalan aplikasi / maupun kerusakan perangkat yang terjadi ketika menggunakan aplikasi ini.
+        [5] Dengan menggunakan aplikasi ini berarti anda setuju dengan disclaimer dan ketentuan yang sudah tertera diatas.</string>
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
     <string name="hapus">Hapus</string>
@@ -38,6 +42,7 @@
     <string name="ubah">UBAH</string>
     <string name="coming_soon">Segera!</string>
     <string name="konfirmasi_hapus">Apakah Anda yakin Ingin Menghapus Transaksi Ini?</string>
+    <string name="tentang_app">Catatan Dompet merupakan aplikasi pencatatan keuangan yang dibuat guna mempermudah pendataan pemasukan dan pengeluaran sehari-hari.</string>
 
     <string-array name="jenis_transaksi_dan_kategori">
         <item>Pemasukan</item>

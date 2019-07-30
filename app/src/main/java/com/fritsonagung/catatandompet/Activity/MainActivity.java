@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet.View;
+package com.fritsonagung.catatandompet.Activity;
 
 import android.app.SearchManager;
 import android.arch.persistence.room.Room;
@@ -71,35 +71,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate menu; Menambahkan item ke actionbar jika ada.
         getMenuInflater().inflate(R.menu.menu_utama, menu);
-
-        //Kaitkan konfigurasi yang dapat dicari dengan SearchView
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_cari).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-        searchView.setSubmitButtonEnabled(true);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                cariTransaksi(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                cariTransaksi(newText);
-                return false;
-            }
-        });
-
         return super.onCreateOptionsMenu(menu);
-    }
-
-    private void cariTransaksi(String cari) {
-        List<EntitasTransaksi> transaksis =  db.transaksiDao().tampilCariTransaksi(cari);
-        if (transaksis != null) {
-
-        }
     }
 
     @Override
@@ -190,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
                 totalPengeluaranKeseluruhan.setText(String.valueOf(totalPengeluaran));
             }
         });
+
+
     }
 
 }

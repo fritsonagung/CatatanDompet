@@ -1,7 +1,6 @@
-package com.fritsonagung.catatandompet.View;
+package com.fritsonagung.catatandompet.Activity;
 
 import android.arch.persistence.room.Room;
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+
 /**
  * Developed By:
  * Nama : Fritson Agung Julians Ayomi
@@ -36,18 +36,18 @@ import java.util.Locale;
  * Tanggal Pengerjaan : 22 Juli 2019
  **/
 
-public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
+public class GrafikKategoriPemasukanActivity extends AppCompatActivity {
 
     private Calendar calendar;
     private DatabaseAplikasi db;
     private DateFormat df;
     public PieChart pieChart;
-    private int graphHiburan, graphPajak, graphTagihan, graphMakanan,
-            graphMinuman, graphTransportasi, graphTelepon, graphLainlain;
+    private int graphGaji, graphBonus, graphDeposito, graphInvestasi, graphPenjualan,
+            graphPenyewaan, graphKupon, graphDividen, graphLainlain;
 
     private List<EntitasTransaksi> listTransaksi = new ArrayList<>();
 
-    int[] color = {Color.rgb(0, 172, 194), Color.rgb(0, 143, 129), Color.rgb(46, 105, 47),
+    int [] color={ Color.rgb(0, 172, 194), Color.rgb(0, 143, 129), Color.rgb(46, 105, 47),
             Color.rgb(161, 16, 66), Color.rgb(122, 30, 137), Color.rgb(190, 143, 0),
             Color.rgb(175, 42, 0), Color.rgb(87, 62, 52), Color.rgb(40, 52, 116),
             Color.rgb(55, 71, 80)
@@ -56,11 +56,11 @@ public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grafik_kategori_pengeluaran);
+        setContentView(R.layout.activity_grafik_kategori_pemasukan);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Grafik Kategori Pengeluaran");
+        setTitle("Grafik Kategori Pemasukan");
 
         // Tambah panah kembali
         if (getSupportActionBar() != null) {
@@ -75,7 +75,7 @@ public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
             }
         });
 
-        pieChart = findViewById(R.id.chart_pengeluaran);
+        pieChart = findViewById(R.id.chart_pemasukan);
 
         calendar = Calendar.getInstance();
 
@@ -96,22 +96,24 @@ public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
                 }
 
                 listTransaksi.clear();
-                if (graphHiburan != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Hiburan", graphHiburan));
-                if (graphPajak != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Pajak", graphPajak));
-                if (graphTagihan != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Tagihan", graphTagihan));
-                if (graphMakanan != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Makanan", graphMakanan));
-                if (graphMinuman != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Minuman", graphMinuman));
-                if (graphTransportasi != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Transportasi", graphTransportasi));
-                if (graphTelepon != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Telepon", graphTelepon));
+                if (graphGaji != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Gaji", graphGaji));
+                if (graphDeposito != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Deposito", graphDeposito));
+                if (graphInvestasi != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Investasi", graphInvestasi));
+                if (graphPenjualan != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Penjualan", graphPenjualan));
+                if (graphPenyewaan != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Penyewaan", graphPenyewaan));
+                if (graphKupon != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Kupon", graphKupon));
+                if (graphBonus != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Bonus", graphBonus));
+                if (graphDividen != 0)
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Dividen", graphDividen));
                 if (graphLainlain != 0)
-                    listTransaksi.add(new EntitasTransaksi("Pengeluaran", "Lain-lain", graphLainlain));
+                    listTransaksi.add(new EntitasTransaksi("Pemasukan", "Lain-lain", graphLainlain));
             }
         });
 
@@ -136,15 +138,18 @@ public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
                 pieChart.setData(pieData);
                 pieChart.invalidate();
 
+
                 pieChart.getDescription().setText("");
                 Legend l = pieChart.getLegend();
                 l.setEnabled(false);
+
 
             }
         });
     }
 
     private void getMonthKategoriPemasukanPieValues() throws ParseException {
+
         df = new SimpleDateFormat("dd/M/yyyy", Locale.getDefault());
         String startDate, endDate;
 
@@ -158,14 +163,15 @@ public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
         Date eDate = df.parse(endDate);
         final long edate = eDate.getTime();
 
-        graphHiburan = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Hiburan", sdate, edate);
-        graphPajak = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Pajak", sdate, edate);
-        graphTagihan = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Tagihan", sdate, edate);
-        graphMakanan = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Makanan", sdate, edate);
-        graphMinuman = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Minuman", sdate, edate);
-        graphTransportasi = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Transportasi", sdate, edate);
-        graphTelepon = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Telepon", sdate, edate);
-        graphLainlain = db.transaksiDao().hitungJumlahGraphKategori("Pengeluaran", "Lain-lain", sdate, edate);
+        graphGaji = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Gaji", sdate, edate);
+        graphDeposito = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Deposito", sdate, edate);
+        graphInvestasi = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Investasi", sdate, edate);
+        graphPenjualan = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Penjualan", sdate, edate);
+        graphPenyewaan = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Penyewaan", sdate, edate);
+        graphKupon = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Kupon", sdate, edate);
+        graphBonus = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Bonus", sdate, edate);
+        graphDividen = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Dividen", sdate, edate);
+        graphLainlain = db.transaksiDao().hitungJumlahGraphKategori("Pemasukan", "Lain-lain", sdate, edate);
     }
 
     private void fetchDataFromRoom() {
@@ -173,5 +179,4 @@ public class GrafikKategoriPengeluaranActivity extends AppCompatActivity {
                 DatabaseAplikasi.class, "transaksi")
                 .fallbackToDestructiveMigration().allowMainThreadQueries().build();
     }
-
 }

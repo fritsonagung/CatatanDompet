@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet.View;
+package com.fritsonagung.catatandompet.Activity;
 
 import android.annotation.SuppressLint;
 import android.arch.persistence.room.Room;
