@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet;
+package com.fritsonagung.catatandompet.View;
 
 import android.app.DatePickerDialog;
 import android.arch.persistence.room.Room;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
+import com.fritsonagung.catatandompet.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

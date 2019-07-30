@@ -1,17 +1,20 @@
-package com.fritsonagung.catatandompet;
+package com.fritsonagung.catatandompet.View;
 
 import android.annotation.SuppressLint;
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
-import com.fritsonagung.catatandompet.Database.ExecutorAplikasi;
+import com.fritsonagung.catatandompet.R;
+import com.fritsonagung.catatandompet.Util.ExecutorAplikasi;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
@@ -36,18 +39,17 @@ import java.util.Locale;
  * Nama : Fritson Agung Julians Ayomi
  * NIM  : 10116076
  * Kelas: AKB-2
- * Tanggal Pengerjaan : 5 Juli 2019
+ * Tanggal Pengerjaan : 22 Juli 2019
  **/
 
 public class LaporanActivity extends AppCompatActivity {
 
     private Calendar calendar;
     private TextView namaBulan, totalSelisihBulanan, totalPemasukanBulanan,
-            totalPengeluaranBulanan, namaKategoriPengeluaran, namaKategoriPemasukan,
-            totalKategoriPemasukan, totalKategoriPengeluaran, tanggalAntara;
-    private int totalSelisih, totalPemasukan, totalPengeluaran, totalTopKategoriPemasukan,
-            totalTopKategoriPengeluaran, graphPemasukan, graphPengeluaran;
-    private String topNamaKategoriPemasukan, topNamaKategoriPengeluaran;
+            totalPengeluaranBulanan, tanggalAntara;
+    private LinearLayout buttonGrafikKategoriPemasukan, buttonGrafikKategoriPengeluaran;
+    private int totalSelisih, totalPemasukan, totalPengeluaran,
+            graphPemasukan, graphPengeluaran;
     private DatabaseAplikasi db;
     private String formattedDate;
     private DateFormat df;
@@ -83,22 +85,36 @@ public class LaporanActivity extends AppCompatActivity {
         totalPemasukanBulanan = findViewById(R.id.TV_Total_Pemasukan_Perbulan);
         totalPengeluaranBulanan = findViewById(R.id.TV_Total_Pengeluaran_Perbulan);
         totalSelisihBulanan = findViewById(R.id.TV_Total_Selisih_Perbulan);
-        namaKategoriPemasukan = findViewById(R.id.TV_Top_Kategori_Pemasukan);
-        namaKategoriPengeluaran = findViewById(R.id.TV_Top_Kategori_Pengeluaran);
-        totalKategoriPemasukan = findViewById(R.id.TV_Total_Top_Kategori_Pemasukan_Perbulan);
-        totalKategoriPengeluaran = findViewById(R.id.TV_Total_Top_Kategori_Pengeluaran_Perbulan);
+        buttonGrafikKategoriPemasukan = findViewById(R.id.button_grafik_kategori_pemasukan);
+        buttonGrafikKategoriPengeluaran = findViewById(R.id.button_grafik_kategori_pengeluaran);
 
         calendar = Calendar.getInstance();
         df = new SimpleDateFormat("MMMM yyyy");
         formattedDate = df.format(calendar.getTime());
         namaBulan.setText(formattedDate);
 
+
+        buttonGrafikKategoriPemasukan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LaporanActivity.this, GrafikKategoriPemasukanActivity.class);
+                startActivity(i);
+            }
+        });
+
+        buttonGrafikKategoriPengeluaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LaporanActivity.this, GrafikKategoriPengeluaranActivity.class);
+                startActivity(i);
+            }
+        });
+
         fetchDataFromRoom();
 
         try {
             getTotalBulanan();
             setupPieChart();
-            getTopKategoriBulanan();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -135,7 +151,7 @@ public class LaporanActivity extends AppCompatActivity {
                 }
                 pieChart.setVisibility(View.VISIBLE);
                 PieDataSet dataSet = new PieDataSet(pieEntries, null);
-                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
                 PieData pieData = new PieData(dataSet);
 
                 pieData.setValueTextSize(16);
@@ -148,7 +164,7 @@ public class LaporanActivity extends AppCompatActivity {
 
                 pieChart.getDescription().setText("");
                 Legend l = pieChart.getLegend();
-                l.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+                l.setWordWrapEnabled(true);
             }
         });
     }
@@ -213,37 +229,6 @@ public class LaporanActivity extends AppCompatActivity {
         });
     }
 
-    private void getTopKategoriBulanan() throws ParseException {
-
-        DateFormat df2 = new SimpleDateFormat("dd/M/yyyy", Locale.getDefault());
-        String startDate, endDate;
-
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        startDate = df2.format(calendar.getTime());
-        Date sDate = df2.parse(startDate);
-        final long sdate = sDate.getTime();
-
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        endDate = df2.format(calendar.getTime());
-        Date eDate = df2.parse(endDate);
-        final long edate = eDate.getTime();
-
-        ExecutorAplikasi.getInstance().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                totalTopKategoriPemasukan = db.transaksiDao().topKategoriBulanan("Pemasukan", sdate, edate);
-                totalTopKategoriPengeluaran = db.transaksiDao().topKategoriBulanan("Pengeluaran", sdate, edate);
-            }
-        });
-        ExecutorAplikasi.getInstance().mainThread().execute(new Runnable() {
-            @Override
-            public void run() {
-                totalKategoriPemasukan.setText(String.valueOf(totalTopKategoriPemasukan));
-                totalKategoriPengeluaran.setText(String.valueOf(totalTopKategoriPengeluaran));
-            }
-
-        });
-    }
 
     private void fetchDataFromRoom() {
         db = Room.databaseBuilder(getApplicationContext(),

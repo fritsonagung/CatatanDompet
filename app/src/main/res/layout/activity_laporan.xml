@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLightGrey"
-    tools:context=".LaporanActivity">
+    tools:context=".View.LaporanActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -191,98 +191,62 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_Top_Kategori_Pemasukan"
+                    android:id="@+id/button_grafik_kategori_pemasukan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dimen64"
                     android:layout_below="@+id/layout_Total_Perbulan"
-                    android:layout_marginTop="@dimen/dimen3"
+                    android:layout_marginTop="@dimen/dimen5"
                     android:background="@color/colorWhite"
-                    android:orientation="vertical">
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10"
                         android:fontFamily="@font/proxima_nova_bold"
-                        android:text="Top Kategori Pemasukan"
+                        android:text="Grafik Kategori Pemasukan"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/font20" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/TV_Top_Kategori_Pemasukan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen10"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/proxima_nova_regular"
-                            android:text="Nama Kategori"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/font18" />
-
-                        <TextView
-                            android:id="@+id/TV_Total_Top_Kategori_Pemasukan_Perbulan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen10"
-                            android:fontFamily="@font/proxima_nova_regular"
-                            android:text="0,00"
-                            android:textColor="@color/colorEmerald"
-                            android:textSize="@dimen/font18" />
-
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen26"
+                        android:layout_marginStart="@dimen/dimen60"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:layout_marginBottom="@dimen/dimen10"
+                        android:background="@drawable/ic_right_pointer" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_Top_Kategori_Pengeluaran"
+                    android:id="@+id/button_grafik_kategori_pengeluaran"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/layout_Top_Kategori_Pemasukan"
-                    android:layout_marginTop="@dimen/dimen3"
+                    android:layout_height="@dimen/dimen64"
+                    android:layout_below="@+id/button_grafik_kategori_pemasukan"
+                    android:layout_marginTop="@dimen/dimen5"
                     android:background="@color/colorWhite"
-                    android:orientation="vertical">
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen10"
                         android:fontFamily="@font/proxima_nova_bold"
-                        android:text="Top Kategori Pengeluaran"
+                        android:text="Grafik Kategori Pengeluaran"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/font20" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/TV_Top_Kategori_Pengeluaran"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen10"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/proxima_nova_regular"
-                            android:text="Nama Kategori"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="@dimen/font18" />
-
-                        <TextView
-                            android:id="@+id/TV_Total_Top_Kategori_Pengeluaran_Perbulan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen10"
-                            android:fontFamily="@font/proxima_nova_regular"
-                            android:text="0,00"
-                            android:textColor="@color/colorOrange"
-                            android:textSize="@dimen/font18" />
-
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen26"
+                        android:layout_marginStart="@dimen/dimen60"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:layout_marginBottom="@dimen/dimen10"
+                        android:background="@drawable/ic_right_pointer" />
 
                 </LinearLayout>
 

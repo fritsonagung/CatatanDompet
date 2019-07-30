@@ -13,23 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UbahTransaksiActivity"
+        <activity android:name=".View.GrafikKategoriPengeluaranActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".View.GrafikKategoriPemasukanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".View.UbahTransaksiActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IntroActivity"
+            android:name=".View.IntroActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LaporanActivity"
+            android:name=".View.LaporanActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TambahTransaksiActivity"
+            android:name=".View.TambahTransaksiActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".View.SplashScreen"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -39,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
     </application>

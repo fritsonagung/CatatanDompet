@@ -56,6 +56,13 @@ public class EntitasTransaksi {
         this.jumlah = jumlah;
     }
 
+    @Ignore
+    public EntitasTransaksi(String tipe,String kategori, int jumlah) {
+        this.tipe = tipe;
+        this.kategori = kategori;
+        this.jumlah = jumlah;
+    }
+
     public int getId_transaksi() {
         return id_transaksi;
     }

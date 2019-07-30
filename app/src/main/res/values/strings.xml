@@ -30,7 +30,7 @@
     <string name="jenis_kategori">Jenis Kategori</string>
     <string name="ok">OK</string>
     <string name="versi_app">Versi : 1.0.0</string>
-    <string name="tentang_pengantar">Anda Menggunakan Aplikasi</string>
+    <string name="tentang_pengantar">Anda Menggunakan Versi Aplikasi</string>
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
     <string name="hapus">Hapus</string>
@@ -51,7 +51,6 @@
         <item>Investasi</item>
         <item>Penjualan</item>
         <item>Penyewaan</item>
-        <item>Pengembalian Dana</item>
         <item>Kupon</item>
         <item>Bonus</item>
         <item>Dividen</item>
@@ -59,13 +58,11 @@
     </string-array>
 
     <string-array name="listKategoriPengeluaran">
-        <item>Asuransi</item>
         <item>Hiburan</item>
         <item>Pajak</item>
         <item>Tagihan</item>
         <item>Makanan</item>
         <item>Minuman</item>
-        <item>Kesehatan</item>
         <item>Transportasi</item>
         <item>Telepon</item>
         <item>Lain-lain</item>

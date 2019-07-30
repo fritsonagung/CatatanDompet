@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
 import com.fritsonagung.catatandompet.R;
-import com.fritsonagung.catatandompet.UbahTransaksiActivity;
+import com.fritsonagung.catatandompet.View.UbahTransaksiActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -34,7 +34,7 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
     private Context mContext;
     private List<EntitasTransaksi> listTransaksi;
     private OnTransaksiListener mOnTransaksiListener;
-    private DatabaseAplikasi databaseAplikasi;
+    private static DatabaseAplikasi databaseAplikasi;
 
 
     public AdapterTransaksi(Context mContext, List<EntitasTransaksi> listTransaksi, OnTransaksiListener onTransaksiListener) {
@@ -121,7 +121,6 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
             intent.putExtra("keterangan", listTransaksi.get(getAdapterPosition()).getKeterangan());
 
             mContext.startActivity(intent);
-
         }
     }
 

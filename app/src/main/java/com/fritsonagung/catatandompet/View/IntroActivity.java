@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet;
+package com.fritsonagung.catatandompet.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.cuneytayyildiz.onboarder.OnboarderActivity;
 import com.cuneytayyildiz.onboarder.OnboarderPage;
 import com.cuneytayyildiz.onboarder.utils.OnboarderPageChangeListener;
+import com.fritsonagung.catatandompet.R;
 import com.fritsonagung.catatandompet.Util.SharedPreferences;
 
 import java.util.Arrays;

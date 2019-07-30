@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet;
+package com.fritsonagung.catatandompet.View;
 
 import android.app.SearchManager;
 import android.arch.persistence.room.Room;
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -22,7 +21,8 @@ import android.widget.TextView;
 import com.fritsonagung.catatandompet.Adapter.AdapterTransaksi;
 import com.fritsonagung.catatandompet.Database.DatabaseAplikasi;
 import com.fritsonagung.catatandompet.Database.EntitasTransaksi;
-import com.fritsonagung.catatandompet.Database.ExecutorAplikasi;
+import com.fritsonagung.catatandompet.R;
+import com.fritsonagung.catatandompet.Util.ExecutorAplikasi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +39,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterTransaksi.OnTransaksiListener {
 
-    private boolean sedangMencari = false;
     private AdapterTransaksi adapterTransaksi;
     public static DatabaseAplikasi db;
     private RecyclerView recyclerView;
     private TextView totalSaldoKeseluruhan, totalPemasukanKeseluruhan, totalPengeluaranKeseluruhan;
     private int totalSaldo, totalPemasukan, totalPengeluaran;
-
     List<EntitasTransaksi> listTransaksi = new ArrayList<>();
 
 
@@ -79,27 +77,29 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         SearchView searchView = (SearchView) menu.findItem(R.id.action_cari).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onClose() {
-                sedangMencari = false;
+            public boolean onQueryTextSubmit(String query) {
+                cariTransaksi(query);
+                return false;
+            }
 
-                // Mempopulasikan kembali transaksi
-                onResume();
-
-                //false: memungkinkan perilaku pembersihan default pada tampilan pencarian pada penutupan.
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                cariTransaksi(newText);
                 return false;
             }
         });
 
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sedangMencari = true;
-            }
-        });
-
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void cariTransaksi(String cari) {
+        List<EntitasTransaksi> transaksis =  db.transaksiDao().tampilCariTransaksi(cari);
+        if (transaksis != null) {
+
+        }
     }
 
     @Override
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     @Override
     public void onClickTransaksi(int position) {
         listTransaksi.get(position);
-        Intent i = new Intent(this, UbahTransaksiActivity.class);
+        Intent i = new Intent(getApplicationContext(), UbahTransaksiActivity.class);
         startActivity(i);
     }
 

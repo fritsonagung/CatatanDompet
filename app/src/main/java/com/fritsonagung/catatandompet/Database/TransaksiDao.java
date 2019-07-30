@@ -31,22 +31,20 @@ public interface TransaksiDao {
             "AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir")
     int hitungJumlahGraphTransaksi(String tipeTransaksi,long tanggalAwal, long tanggalAkhir);
 
+    @Query("SELECT SUM(jumlah) FROM transaksi WHERE tipe= :tipeTransaksi AND kategori= :jenisKategori " +
+            "AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir")
+    int hitungJumlahGraphKategori(String tipeTransaksi,String jenisKategori,long tanggalAwal, long tanggalAkhir);
+
     @Query("SELECT SUM (jumlah) FROM transaksi AS totalBulanan " +
             "WHERE tipe =:tipeTransaksi " +
             "AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir")
     int hitungTotalTransaksiBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
 
-    @Query("SELECT kategori, JumlahKategori FROM( SELECT kategori, SUM(jumlah) AS JumlahKategori FROM transaksi WHERE tipe = :tipeTransaksi AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir GROUP BY kategori) " +
-            "AS tempTable WHERE JumlahKategori = (SELECT MAX(JumlahKategori) FROM ( SELECT kategori, SUM(jumlah) " +
-            "AS JumlahKategori FROM transaksi WHERE tipe = :tipeTransaksi AND tanggal BETWEEN :tanggalAwal AND :tanggalAkhir GROUP BY kategori) AS tempTable)")
-    int topKategoriBulanan(String tipeTransaksi, long tanggalAwal, long tanggalAkhir);
-
-
-    /*@Query("SELECT * FROM transaksi WHERE tipe LIKE '%'+:cari+'%' " +
+    @Query("SELECT * FROM transaksi WHERE tipe LIKE:cari " +
             "OR tanggal LIKE :cari OR kategori LIKE :cari OR jumlah LIKE :cari " +
             "OR keterangan LIKE :cari ")
     List<EntitasTransaksi>tampilCariTransaksi(String cari);
-    */
+
 
 
     @Insert

@@ -1,4 +1,4 @@
-package com.fritsonagung.catatandompet.Database;
+package com.fritsonagung.catatandompet.Util;
 
 import android.os.Handler;
 import android.os.Looper;
