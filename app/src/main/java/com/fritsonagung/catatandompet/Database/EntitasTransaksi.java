@@ -12,7 +12,7 @@ import java.util.Date;
  Nama : Fritson Agung Julians Ayomi
  NIM  : 10116076
  Kelas: AKB-2
- Tanggal Pengerjaan : 7 Juli 2019
+ Tanggal Pengerjaan : 5 Juli 2019
  **/
 
 @Entity(tableName = "transaksi")
