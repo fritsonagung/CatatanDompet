@@ -60,7 +60,7 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
 
                 new OnboarderPage.Builder()
                         .title("Laporan")
-                        .description("Lihat laporan keuangan berupa gragik, ketahui pemasukan dan pengeluaran anda tiap bulan berjalan")
+                        .description("Lihat laporan keuangan berupa grafik, ketahui pemasukan dan pengeluaran anda tiap bulan berjalan")
                         .imageResourceId(R.drawable.report)
                         .backgroundColor(R.color.colorLightBlue)
                         .titleColor(R.color.white)
