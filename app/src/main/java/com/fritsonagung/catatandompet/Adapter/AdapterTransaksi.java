@@ -88,7 +88,7 @@ public class AdapterTransaksi extends RecyclerView.Adapter<AdapterTransaksi.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView kategori, keterangan, jumlah, tanggal;
+        TextView kategori, keterangan, jumlah, tanggal, nodata;
         OnTransaksiListener onTransaksiListener;
 
         public MyViewHolder(View v, OnTransaksiListener onTransaksiListener) {

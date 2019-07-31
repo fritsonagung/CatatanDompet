@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
     private AdapterTransaksi adapterTransaksi;
     public static DatabaseAplikasi db;
     private RecyclerView recyclerView;
-    private TextView totalSaldoKeseluruhan, totalPemasukanKeseluruhan, totalPengeluaranKeseluruhan;
+    private TextView totalSaldoKeseluruhan, totalPemasukanKeseluruhan, totalPengeluaranKeseluruhan, noData;
     private int totalSaldo, totalPemasukan, totalPengeluaran;
     List<EntitasTransaksi> listTransaksi = new ArrayList<>();
 
@@ -56,13 +56,22 @@ public class MainActivity extends AppCompatActivity implements AdapterTransaksi.
         setSupportActionBar(toolbar);
         setTitle("Utama");
 
-        fetchDataFromRoom();
-        initRecyclerView();
-        setAdapter();
-
         totalPemasukanKeseluruhan = findViewById(R.id.TV_Total_Pemasukan_Keseluruhan);
         totalPengeluaranKeseluruhan = findViewById(R.id.TV_Total_Pengeluaran_Keseluruhan);
         totalSaldoKeseluruhan = findViewById(R.id.TV_Total_Saldo_Keseluruhan);
+        noData = findViewById(R.id.TV_No_Data);
+
+        fetchDataFromRoom();
+
+        if (!listTransaksi.isEmpty()) {
+            //Jika data tersedia sembunyikan textview noData
+            noData.setVisibility(View.INVISIBLE);
+            initRecyclerView();
+            setAdapter();
+
+        } else{
+            noData.setVisibility(View.VISIBLE);
+        }
 
         getTotalTransaksi();
     }

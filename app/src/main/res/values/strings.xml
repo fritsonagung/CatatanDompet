@@ -43,6 +43,7 @@
     <string name="coming_soon">Segera!</string>
     <string name="konfirmasi_hapus">Apakah Anda yakin Ingin Menghapus Transaksi Ini?</string>
     <string name="tentang_app">Catatan Dompet merupakan aplikasi pencatatan keuangan yang dibuat guna mempermudah pendataan pemasukan dan pengeluaran sehari-hari.</string>
+    <string name="data_kosong">Data belum tersedia, Silahkan tambahkan data baru.</string>
 
     <string-array name="jenis_transaksi_dan_kategori">
         <item>Pemasukan</item>

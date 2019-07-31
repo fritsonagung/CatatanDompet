@@ -142,6 +142,17 @@
             android:layout_margin="@dimen/dimen5"
             android:background="@color/white" />
 
+        <TextView
+            android:id="@+id/TV_No_Data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font16"
+            android:fontFamily="@font/proxima_nova_alt_light"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/data_kosong"
+            android:textColor="@color/colorBlack"/>
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

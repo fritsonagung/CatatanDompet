@@ -47,7 +47,7 @@ public class GrafikKategoriPemasukanActivity extends AppCompatActivity {
 
     private List<EntitasTransaksi> listTransaksi = new ArrayList<>();
 
-    int [] color={ Color.rgb(0, 172, 194), Color.rgb(0, 143, 129), Color.rgb(46, 105, 47),
+    int[] color = {Color.rgb(0, 172, 194), Color.rgb(0, 143, 129), Color.rgb(46, 105, 47),
             Color.rgb(161, 16, 66), Color.rgb(122, 30, 137), Color.rgb(190, 143, 0),
             Color.rgb(175, 42, 0), Color.rgb(87, 62, 52), Color.rgb(40, 52, 116),
             Color.rgb(55, 71, 80)
@@ -125,25 +125,32 @@ public class GrafikKategoriPemasukanActivity extends AppCompatActivity {
                 for (int i = 0; i < listTransaksi.size(); i++) {
                     pieEntries.add(new PieEntry(listTransaksi.get(i).getJumlah(), listTransaksi.get(i).getKategori()));
                 }
-                pieChart.setVisibility(View.VISIBLE);
-                PieDataSet dataSet = new PieDataSet(pieEntries, null);
-                dataSet.setColors(color);
-                PieData pieData = new PieData(dataSet);
 
-                pieData.setValueTextSize(16);
-                pieData.setValueTextColor(Color.WHITE);
-                pieData.setValueFormatter(new PercentFormatter());
-                pieChart.setUsePercentValues(true);
-                pieChart.animateY(1000);
-                pieChart.setData(pieData);
-                pieChart.invalidate();
+                if (pieEntries.isEmpty()) {
 
+                    pieChart.clear();
+                    pieChart.setNoDataText("Data belum tersedia");
 
-                pieChart.getDescription().setText("");
-                Legend l = pieChart.getLegend();
-                l.setEnabled(false);
+                } else {
 
+                    pieChart.setVisibility(View.VISIBLE);
+                    PieDataSet dataSet = new PieDataSet(pieEntries, null);
+                    dataSet.setColors(color);
+                    PieData pieData = new PieData(dataSet);
 
+                    pieData.setValueTextSize(16);
+                    pieData.setValueTextColor(Color.WHITE);
+                    pieData.setValueFormatter(new PercentFormatter());
+                    pieChart.setUsePercentValues(true);
+                    pieChart.animateY(1000);
+                    pieChart.setData(pieData);
+                    pieChart.invalidate();
+
+                    pieChart.getDescription().setText("");
+                    Legend l = pieChart.getLegend();
+                    l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                    l.setWordWrapEnabled(true);
+                }
             }
         });
     }
